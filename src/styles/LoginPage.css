@@ -1,0 +1,95 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("public/bg-image.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Контейнер логина */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Блок с логином */
+.login-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 320px; /* Увеличила ширину */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Отступы между элементами */
+}
+
+/* Логотип */
+.logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+/* Поля ввода */
+/* Общие стили для инпутов */
+.input, .password-container {
+    width: 100%;
+    padding: 12px; /* Одинаковый padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+/* Поле почты */
+.input {
+    display: block;
+}
+
+/* Поле пароля */
+
+
+.password-container input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 0;
+}
+
+/* Иконка глаза */
+.password-container span {
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+/* Ссылка "Забыли пароль?" */
+.forgot-password {
+    display: block;
+    margin: 10px 0;
+    color: blue;
+    text-decoration: none;
+}
+
+/* Кнопка входа */
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background: #7d3cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background: #6931cc;
+}
