@@ -1,57 +1,84 @@
 /* MainPage.css */
 
-.main-container {
+/* Общие стили */
+html, body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Контейнер всей страницы */
+.container {
     display: flex;
     height: 100vh;
-    background-color: #f5f5f5;
 }
 
+/* Боковая панель */
 .sidebar {
     width: 250px;
-    background-color: #ffffff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #eeeeee;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.header {
-    background-color: #ffffff;
-    padding: 15px;
-    text-align: center;
-    font-size: 24px;
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
     font-weight: bold;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    color: #4b0082;
+    margin-bottom: 20px;
 }
 
-.news-section {
-    margin-top: 20px;
-}
-
-.news-card {
-    background-color: #fff;
-    padding: 15px;
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
     border-radius: 8px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.news-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.news-date {
-    font-size: 12px;
-    color: gray;
-    margin-bottom: 8px;
-}
-
-.news-content {
-    font-size: 14px;
+    text-decoration: none;
     color: #333;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #dcdcdc;
+}
+
+.menu-item.active {
+    background-color: #6a0dad;
+    color: white;
+}
+
+/* Контентная часть */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+/* Главный заголовок */
+.main-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Секция новостей */
+.news-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Карточка новости */
+.news-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
 }
