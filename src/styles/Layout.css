@@ -1,29 +1,27 @@
 /* Layout.css */
 .layout-header {
-    width: 98%;
+    width: 100%; /* Исправлено для лучшего отображения */
     height: 70px;
-    background: #F6F6F6;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 16px;
     color: #A0A0A0;
-    margin-top: -150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
-/*@font-face {
-    font-family: 'Nico Mijo';
-    src: url('/fonts/NicoMijo.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}*/
-
-.DMS {
+.dms {
     display: flex;
-    justify-content: flex-start; /* Выравнивает контент слева */
-    align-items: flex-start; /* Если нужно прижать к верхнему краю */
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: -10px;
 }
 
 .header-icons {
@@ -40,21 +38,22 @@
 }
 
 .user-avatar {
+    margin-right: 45px;
     font-weight: bold;
     font-size: 18px;
-    margin-right: 10px;
+    width: 40px;
 }
 
 .logo {
     font-size: 18px;
-    width: 25%; /* 50% от родительского контейнера */
-    height: auto; /* Автоматическая высота */
-    margin-top: 15px;
+    width: auto;
+    height: 50px;
     margin-left: 10px;
 }
 
 .logo-container {
+    margin-top: 20px;
     display: flex;
     align-items: center;
-    gap: 10px; /* Расстояние между логотипом и текстом */
+    gap: 10px;
 }

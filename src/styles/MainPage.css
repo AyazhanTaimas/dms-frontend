@@ -1,32 +1,53 @@
+/* MainPage.css */
 html, body {
     background: #F6F6F6 !important;
     background-image: none !important;
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
 }
 
 .content {
     margin-left: 270px;
+    margin-top: 90px;
     padding: 20px;
-    background-color: #F6F6F6; /* Убедимся, что фон остается белым */
+    background-color: #F6F6F6;
+    min-height: calc(100vh - 90px);
 }
 
 .main-title {
     width: 96%;
-    font-size: 32px;
+    font-size: 50px; /* Увеличенный размер текста */
     font-weight: bold;
     text-align: center;
-    background: #F8F8F8;
-    padding: 20px;
+    background: white;
+    padding: 30px 20px; /* Оптимальные отступы */
+    min-height: 100px; /* Уменьшенная высота */
     border-radius: 10px;
+    margin-top: -400px; /* Уменьшенный отрицательный отступ */
+
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
 }
 
 .news-section {
-    margin-top: 20px;
-    background-color: white; /* Белый фон для раздела новостей */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; /* Увеличена ширина контейнера */
+    width: 100%;
+    margin-bottom: 20px;
 }
+
 
 .news-card {
     background: white;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -42,5 +63,19 @@ html, body {
 
 .news-title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
 }
+
+.news-text {
+    flex: 1; /* Занимает всё доступное пространство */
+    font-size: 16px;
+}
+
+.news-image {
+    width: 170px; /* Увеличена ширина изображения */
+    height: 170px; /* Увеличена высота */
+    border-radius: 10px;
+    margin-left: 20px;
+    background-color: #8c85a9;
+}
+

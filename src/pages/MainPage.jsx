@@ -20,22 +20,26 @@ const MainPage = () => {
                 <h1 className="main-title">ГЛАВНОЕ ОБЪЯВЛЕНИЕ</h1>
             </div>
 
-            <section className="news-section">
-                <h2 className="text-2xl font-semibold mb-4">Новости</h2>
-                {news.map((item, index) => (
-                    <div key={index} className="news-card">
-                        <div className="news-image"></div>
-                        <div className="news-text">
-                            <p className="news-date">{item.date}</p>
-                            <h3 className="news-title">{item.title}</h3>
-                            <p className="text-gray-600">{item.text}</p>
-                        </div>
-                    </div>
-                ))}
-            </section>
-        </main>
+            {/* Заголовок новостей отдельно */}
+            <h2 className="news-heading">Новости</h2>
 
+            {news.map((item, index) => (
+                <section key={index} className="news-section">
+
+
+                    <div className="news-text">
+                        <p className="news-date">{item.date}</p>
+                        <h3 className="news-title">{item.title}</h3>
+                        <p className="text-gray-600">{item.text}</p>
+                    </div>
+                    <div className="news-image"></div>
+
+                </section>
+            ))}
+        </main>
     );
+
+
 };
 
 export default MainPage;

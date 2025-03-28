@@ -34,7 +34,6 @@ const LoginPage = () => {
 
             <div className="login-box">
                 <h2>Войти в аккаунт</h2>
-                {error && <p className="error-message">{error}</p>}
 
                 <form onSubmit={handleLogin}>
                     <label htmlFor="email">Почта</label>
@@ -63,12 +62,14 @@ const LoginPage = () => {
                         </span>
                     </div>
 
-                    {/* Добавлен текст "Забыли пароль?" */}
                     <p className="forgot-password" onClick={() => navigate("/forgot-password")}>
                         Забыли пароль?
                     </p>
 
                     <button type="submit" className="login-button">Войти</button>
+
+                    {/* Ошибка отображается под кнопкой */}
+                    {error && <p className="error-message">{error}</p>}
                 </form>
             </div>
         </div>
@@ -76,3 +77,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+

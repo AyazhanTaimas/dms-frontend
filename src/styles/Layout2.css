@@ -1,5 +1,7 @@
+/* Layout2.css */
 .sidebar {
-    width: 220px;
+    margin-top: 20px;
+    width: 250px;
     height: 100vh;
     background: #F6F6F6;
     padding: 20px;
@@ -7,10 +9,9 @@
     flex-direction: column;
     border-right: 2px solid #ddd;
     position: fixed;
-    top: 0;
+    top: 70px;
     left: 0;
     font-size: 18px;
-    margin-top: 88px;
 }
 
 .sidebar-logo {
