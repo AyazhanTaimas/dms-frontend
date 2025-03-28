@@ -1,21 +1,22 @@
 import React from "react";
+import "../styles/Layout.css";
 
 const Layout = ({ children }) => {
     return (
-        <div className="flex flex-col w-full">
-            {/* Верхняя панель */}
-            <header className="w-full bg-white shadow-md p-4 flex justify-between items-center">
-                <h1 className="text-lg font-bold">Главная</h1>
-                <div className="flex items-center space-x-4">
-                    <span className="text-sm text-gray-500">🔔 4</span>
-                    <span className="w-8 h-8 bg-purple-600 text-white flex items-center justify-center rounded-full font-bold">
-            A
-          </span>
+        <div className="layout-container">
+            <header className="layout-header">
+                <img src="/logo.png" alt="Logo" className="logo"/>
+                <h1 className="DMS"> DMS </h1>
+                <div className="header-icons">
+                    <img src="/bell-icon.png" alt="Bell" className="bell"/>
+                    <img src="/user-icon.png" alt="User" className="user-avatar"/>
+
+
                 </div>
             </header>
-
-            {/* Контентная часть (основная) */}
-            <main className="flex flex-1">{children}</main>
+            <main className="layout-content">
+                {children} {/* Вставляем переданное содержимое */}
+            </main>
         </div>
     );
 };

@@ -10,7 +10,7 @@ const LoginPage = () => {
 
         <div className="login-container">
             <div className="login-box">
-                {/*  <img src="/logo.png" alt="Logo" className="logo" /> */}
+                  <img src="/logo.png" alt="Logo" className="logo" />
                 <h2>Войти в аккаунт</h2>
 
                 <label htmlFor="email">Почта</label>
