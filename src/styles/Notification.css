@@ -1,56 +1,76 @@
+/* Контейнер уведомлений */
 .notification-sidebar {
     position: fixed;
     top: 0;
     right: 0;
-    width: 320px;
+    width: 300px;
     height: 100vh;
     background: white;
-    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
     z-index: 1000;
+    transform: translateX(100%);
 }
 
 .notification-sidebar.open {
     transform: translateX(0);
 }
 
-.notification-sidebar .close-btn {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    font-size: 20px;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.notification-sidebar h2 {
-    font-size: 20px;
-}
-
-.notif-list {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
+/* Контейнер для каждого уведомления */
 .notif-card {
-    background: #f8f8f8;
+    background: #f9f9f9;
     padding: 12px;
+    margin: 10px 0;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
+
+/* Текст уведомления */
 .notif-text {
     font-size: 14px;
     color: #333;
 }
 
-.empty-message {
-    text-align: center;
+/* Время и дата */
+.notif-timestamp {
+    font-size: 12px;
     color: gray;
-    font-size: 14px;
+    margin-top: 5px;
+    align-self: flex-start; /* Перемещаем влево */ ;
+}
+
+/* Круглая кнопка закрытия */
+.close-btn-circle {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    background: #6C2DC7;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s, transform 0.3s;
+}
+
+.close-btn-circle:hover {
+    background: darkred;
+    transform: scale(1.1);
+}
+
+.not {
+    margin-top: 40px;
 }
