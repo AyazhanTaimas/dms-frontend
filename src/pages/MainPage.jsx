@@ -16,7 +16,6 @@ const MainPage = () => {
 
     return (
         <main className="content">
-            <div className="background" style={{backgroundImage: 'url(/your-image-path.jpg)'}}></div>
             <div className="bg-white p-6 rounded-lg shadow-md">
                 <h1 className="main-title">ГЛАВНОЕ ОБЪЯВЛЕНИЕ</h1>
             </div>

@@ -47,8 +47,14 @@
 
 .logo {
     font-size: 18px;
-    width: 4%; /* 50% от родительского контейнера */
+    width: 25%; /* 50% от родительского контейнера */
     height: auto; /* Автоматическая высота */
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 10px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между логотипом и текстом */
 }

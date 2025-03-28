@@ -1,10 +1,12 @@
-/* MainPage.css */
-.html, body {
-    background-color: white;
+html, body {
+    background: #F6F6F6 !important;
+    background-image: none !important;
 }
+
 .content {
     margin-left: 270px;
     padding: 20px;
+    background-color: #F6F6F6; /* Убедимся, что фон остается белым */
 }
 
 .main-title {
@@ -19,6 +21,7 @@
 
 .news-section {
     margin-top: 20px;
+    background-color: white; /* Белый фон для раздела новостей */
 }
 
 .news-card {
@@ -41,5 +44,3 @@
     font-weight: bold;
     font-size: 18px;
 }
-
-
