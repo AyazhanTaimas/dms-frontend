@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import MainPage from "./pages/MainPage";
 import Layout from "./layouts/Layout"; // Верхняя панель
+import HousingPage from "./pages/HousingPage";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
                         <Layout2 />
                         <Routes>
                             <Route path="main-page" element={<MainPage />} />
-                            {/* Добавь другие страницы сюда */}
+                            <Route path="housing" element={<HousingPage />} />
                         </Routes>
                     </Layout>
                 } />

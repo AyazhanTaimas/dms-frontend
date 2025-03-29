@@ -1,0 +1,100 @@
+.housing-container {
+    width: 420px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    margin-left: 300px;
+    margin-top: 100px;
+}
+
+.housing-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.selection-container {
+    background: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.selection-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.selection-label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.selection-dropdown {
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: white;
+    color: #888; /* Серый текст по умолчанию */
+    font-size: 18px;
+    width: 100%;
+    min-width: 280px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    appearance: none;
+}
+
+/* Если выбрано значение, меняем цвет текста на черный */
+.selection-dropdown:valid {
+    color: black;
+}
+
+/* Эффект при наведении */
+.selection-dropdown:hover {
+    border-color: #888;
+}
+
+/* Эффект при фокусе */
+.selection-dropdown:focus {
+    border-color: #6C2DC7;
+    box-shadow: 0 0 8px rgba(108, 45, 199, 0.3);
+}
+
+.settle-button {
+    margin-left: 60px;
+    width: 100%;
+    max-width: 300px;
+    padding: 14px;
+    margin-top: 30px;
+    background-color: #6C2DC7;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.settle-button:hover {
+    background-color: #5A1FB4;
+}
+
+.settle-button:active {
+    background-color: #4D1A9F;
+    transform: scale(0.98);
+}
+
+.settle-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
