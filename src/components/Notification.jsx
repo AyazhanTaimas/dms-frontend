@@ -1,14 +1,18 @@
 import React from "react";
 import "../styles/Notification.css";
 
-const Notification = ({ isOpen, onClose, notifications }) => {
+const Notification = ({ isOpen, onClose, notifications = [] }) => {
+    if (!isOpen) return null; // Не рендерим, если закрыто
+
+    console.log("Notifications:", notifications); // Проверка данных
+
     return (
         <div className={`notification-sidebar ${isOpen ? "open" : ""}`}>
             <button className="close-btn-circle" onClick={onClose}>×</button>
             <h2 className="not">Уведомления</h2>
 
             <div className="notif-list">
-                {notifications.length === 0 ? (
+                {notifications?.length === 0 ? (
                     <p className="empty-message">Нет новых уведомлений</p>
                 ) : (
                     notifications.map((notif, index) => {
