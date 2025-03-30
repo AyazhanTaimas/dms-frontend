@@ -17,6 +17,7 @@ function App() {
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
+                {/* Всё внутри Layout */}
                 <Route path="/*" element={
                     <Layout>
                         <Layout2 isSettled={isSettled} />
@@ -33,5 +34,4 @@ function App() {
 }
 
 export default App;
-
 

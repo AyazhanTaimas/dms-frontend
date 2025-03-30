@@ -1,60 +1,72 @@
 import React, { useState } from "react";
-import "../styles/PersonalInfo.css"; // Подключаем CSS-файл
+import "../styles/PersonalInfo.css";
 
 const PersonalInfo = () => {
-    const [userInfo, setUserInfo] = useState({
-        fullName: "Токанова Аяжан",
-        status: "Проживающий",
-        address: "Корпус 1, этаж 2, комната 14Б",
-        id: "21B030931",
-        email: "a_tokanova@kbtu.kz",
-        phone: "87071711204",
-    });
-
-    const handleChange = (e) => {
-        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-    };
+    const [email, setEmail] = useState("a_tokanova@kbtu.kz");
+    const [phone, setPhone] = useState("87071711204");
 
     return (
-        <div className="container">
-            <h1 className="title">Личные данные</h1>
+        <div className="personal-info-container">
+            <h2 className="personal-info-header">Личные данные</h2>
 
-            <div className="profile">
-                <img src="/avatar.png" alt="User Avatar" className="avatar" />
-                <div className="info">
-                    <h2 className="name">{userInfo.fullName}</h2>
-                    <p className="status">{userInfo.status}</p>
-                    <p className="address">{userInfo.address}</p>
+            <div className="personal-info-content">
+                <img
+                    src="/avatar.png"
+                    alt="User"
+                    className="personal-info-avatar"
+                />
+
+                <div className="personal-info-details">
+                    <h3 className="personal-info-name">Токанова Аяжан</h3>
+                    <p className="personal-info-status">
+                        Статус: Проживающий<br />
+                        Корпус 1, этаж 2, комната 14Б
+                    </p>
                 </div>
             </div>
 
-            <div className="form">
-                <div className="form-group">
+            <div className="personal-info-fields">
+                <div className="personal-info-field">
                     <label>ID</label>
-                    <input type="text" value={userInfo.id} disabled className="input disabled" />
+                    <input type="text" value="21B030931" className="personal-info-input" readOnly />
                 </div>
-                <div className="form-group">
+
+                <div className="personal-info-field">
                     <label>Номер телефона</label>
-                    <input type="text" name="phone" value={userInfo.phone} onChange={handleChange} className="input" />
+                    <input
+                        type="text"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="personal-info-input"
+                    />
                 </div>
-                <div className="form-group">
+            </div>
+
+            <div className="personal-info-fields">
+                <div className="personal-info-field">
                     <label>E-Mail</label>
-                    <input type="email" name="email" value={userInfo.email} onChange={handleChange} className="input" />
+                    <input
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="personal-info-input"
+                    />
                 </div>
-                <div className="form-group">
+
+                <div className="personal-info-password">
                     <label>Пароль</label>
-                    <button className="button black">Изменить</button>
+                    <button className="personal-info-password-btn">Изменить</button>
                 </div>
             </div>
 
-            <div className="button-container">
-                <button className="button save">Сохранить изменения</button>
-            </div>
-
+            <button className="personal-info-save-btn">Сохранить изменения</button>
         </div>
     );
 };
 
 export default PersonalInfo;
+
+
+
 
 

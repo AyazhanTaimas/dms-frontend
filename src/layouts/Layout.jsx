@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Notification from "../components/Notification";
 import UserCard from "../components/UserCard";
 import "../styles/Layout.css";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Layout = ({ children }) => {
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
