@@ -9,6 +9,7 @@ import HousingPage from "./pages/HousingPage";
 import PersonalInfo from "./pages/PersonalInfo";
 import DocumentsPage from "./pages/DocumentsPage";
 import FinancialCabinet from "./pages/FinancialCabinet.jsx";
+import RepairRequest from "./pages/RepairRequest.jsx";
 
 function App() {
     const [isSettled, setIsSettled] = useState(false);
@@ -29,6 +30,7 @@ function App() {
                             <Route path="personal-info" element={<PersonalInfo />} />
                             <Route path="documents" element={<DocumentsPage />} />
                             <Route path="financial-cabinet" element={<FinancialCabinet />} />
+                            <Route path="repair-requests" element={<RepairRequest />} />
                         </Routes>
                     </Layout>
                 } />

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../styles/DocumentPage.css";
 
 const DocumentsPage = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedType, setSelectedType] = useState("");
-    const [file, setFile] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Для управления состоянием модального окна
+    const [selectedType, setSelectedType] = useState(""); // Для выбора типа документа
+    const [file, setFile] = useState(null); // Для хранения выбранного файла
 
     const documentTypes = [
         "Удостоверение личности",
@@ -13,16 +13,18 @@ const DocumentsPage = () => {
         "Справка с места учебы",
     ];
 
+    // Обработчик для изменения выбранного файла
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
 
+    // Обработчик для загрузки документа
     const handleUpload = () => {
         if (selectedType && file) {
             alert(`Документ "${selectedType}" загружен!`);
-            setIsModalOpen(false);
-            setSelectedType("");
-            setFile(null);
+            setIsModalOpen(false); // Закрытие модального окна после загрузки
+            setSelectedType(""); // Сброс выбранного типа
+            setFile(null); // Сброс файла
         } else {
             alert("Выберите тип документа и прикрепите файл.");
         }
@@ -74,8 +76,15 @@ const DocumentsPage = () => {
                             📎 Прикрепить файл
                         </label>
                         <div className="modal-buttons">
-                            <button className="upload-btn" onClick={handleUpload}>Загрузить</button>
-                            <button className="modal-close" onClick={() => setIsModalOpen(false)}>Отменить</button>
+                            <button className="upload-btn" onClick={handleUpload}>
+                                Загрузить
+                            </button>
+                            <button
+                                className="modal-close"
+                                onClick={() => setIsModalOpen(false)} // Закрытие модального окна
+                            >
+                                Отменить
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -1,22 +1,24 @@
+/* Контейнер для документов */
 .documents-container {
-    max-width: 1000px;
+    width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow-x: auto;
-    margin-top: -1050px;
-    width: 900px;
-    margin-left: 120px;
+    margin-top: -800px;
+    margin-left: 200px;
 }
 
+/* Заголовок */
 .documents-title {
     text-align: left;
     font-size: 24px;
     margin-bottom: 20px;
 }
 
+/* Таблица документов */
 .documents-table {
     width: 100%;
     border-collapse: collapse;
@@ -52,6 +54,7 @@ th {
     color: red;
 }
 
+/* Ссылка для скачивания документа */
 .document-download {
     display: inline-block;
     padding: 5px 10px;
@@ -66,24 +69,42 @@ th {
     background-color: #0056b3;
 }
 
+/* Кнопка загрузки документа */
 .upload-button {
     display: block;
-    margin: 20px auto 0;
-    padding: 12px 30px;
-    font-size: 18px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #6545e0;
     color: white;
-    background-color: #007bff;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
 }
 
 .upload-button:hover {
-    background-color: #0056b3;
+    background-color: #4D1A9F;
 }
 
-/* Модальное окно */
+/* Контейнер для модального окна */
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 450px;
+    height: 90vh;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Затемнение фона */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -94,74 +115,13 @@ th {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
+/* Основное модальное окно */
 .modal {
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 400px; /* Увеличил ширину окна */
-}
-
-.document-select {
     width: 100%;
-    padding: 12px;
-    margin: 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: white;
-    font-size: 16px;
-}
-
-/* Поле загрузки файла */
-.file-upload {
-    display: block;
-    margin-top: 15px;
-    padding: 12px;
-    background: #f1f1f1;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.file-upload input {
-    display: none;
-}
-
-/* Кнопки в модальном окне */
-.modal-buttons {
-    border-radius: 15px;
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.upload-btn, .modal-close {
-    flex: 1;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.upload-btn {
-    background: green;
-    color: white;
-    margin-right: 10px;
-}
-
-.upload-btn:hover {
-    background: darkgreen;
-}
-
-.modal-close {
-    background: red;
-    color: white;
-}
-
-.modal-close:hover {
-    background: darkred;
+    flex-direction: column;
+    align-items: center;
 }
