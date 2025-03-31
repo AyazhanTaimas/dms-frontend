@@ -1,4 +1,3 @@
-// Layout2.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Layout2.css";
@@ -7,10 +6,11 @@ const Layout2 = ({ isSettled }) => {
     return (
         <div className="layout-container">
             <aside className="sidebar">
-                <nav className="sidebar-nav"><NavLink to="/main-page" className={({ isActive }) => (isActive ? "active" : "")}>
-                    <img src="/lenta2.png" alt="Lenta" className="nav-icon" />
-                    Лента
-                </NavLink>
+                <nav className="sidebar-nav">
+                    <NavLink to="/main-page" className={({ isActive }) => (isActive ? "active" : "")}>
+                        <img src="/lenta2.png" alt="Lenta" className="nav-icon" />
+                        Лента
+                    </NavLink>
                     <NavLink to="/housing" className={({ isActive }) => (isActive ? "active" : "")}>
                         <img src="/housing.png" alt="Housing" className="nav-icon" />
                         Проживание
@@ -30,7 +30,7 @@ const Layout2 = ({ isSettled }) => {
                                 <img src="/doc.png" alt="Documents" className="nav-icon" />
                                 Документы
                             </NavLink>
-                            <NavLink to="/finance" className={({ isActive }) => (isActive ? "active" : "")}>
+                            <NavLink to="/financial-cabinet" className={({ isActive }) => (isActive ? "active" : "")}>
                                 <img src="/finance.png" alt="Finance" className="nav-icon" />
                                 Финансовый кабинет
                             </NavLink>
@@ -46,10 +46,10 @@ const Layout2 = ({ isSettled }) => {
                     )}
                 </nav>
             </aside>
-            <main className="content">
-            </main>
+            <main className="content"></main>
         </div>
     );
 };
 
 export default Layout2;
+

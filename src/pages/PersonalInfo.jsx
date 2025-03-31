@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import "../styles/PersonalInfo.css";
+import ChangePasswordForPersonalInfo from "../components/ChangePasswordForPersonalInfo.jsx";
 
 const PersonalInfo = () => {
     const [email, setEmail] = useState("a_tokanova@kbtu.kz");
     const [phone, setPhone] = useState("87071711204");
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     return (
         <div className="personal-info-container">
@@ -55,9 +59,12 @@ const PersonalInfo = () => {
 
                 <div className="personal-info-password">
                     <label>Пароль</label>
-                    <button className="personal-info-password-btn">Изменить</button>
+                    <button className="personal-info-password-btn" onClick={() => setIsModalOpen(true)}>Изменить
+                    </button>
                 </div>
             </div>
+
+            {isModalOpen && <ChangePasswordForPersonalInfo onClose={() => setIsModalOpen(false)} />}
 
             <button className="personal-info-save-btn">Сохранить изменения</button>
         </div>

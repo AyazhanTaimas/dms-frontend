@@ -1,0 +1,103 @@
+.financial-container {
+    margin-top: -1050px;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 1000px;
+    margin-left: 100px;
+}
+
+.financial-title {
+    text-align: left;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Блок с выбором периода */
+.period-section {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.period-select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+/* Контейнер с оплатами (расположение горизонтально) */
+.payments-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 900px;
+}
+
+/* Блоки оплат (предыдущие и предстоящие) */
+.past-payments, .upcoming-payments {
+    flex: 1;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Таблица предыдущих оплат */
+.payments-table {
+    margin-top: 20px;
+    width: 600px;
+    border-collapse: collapse;
+
+}
+
+.payments-table th, .payments-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.payments-table th {
+    background-color: #f4f4f4;
+}
+
+.payment-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.payment-link:hover {
+    text-decoration: underline;
+}
+
+/* Предстоящие оплаты */
+.upcoming-payment {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.upcoming-payment p {
+    margin: 5px 0;
+}
+
+.pay-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6545e0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.pay-button:hover {
+    background-color: #4D1A9F;
+}

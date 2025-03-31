@@ -7,6 +7,8 @@ import MainPage from "./pages/MainPage";
 import Layout from "./layouts/Layout"; // Верхняя панель
 import HousingPage from "./pages/HousingPage";
 import PersonalInfo from "./pages/PersonalInfo";
+import DocumentsPage from "./pages/DocumentsPage";
+import FinancialCabinet from "./pages/FinancialCabinet.jsx";
 
 function App() {
     const [isSettled, setIsSettled] = useState(false);
@@ -23,8 +25,10 @@ function App() {
                         <Layout2 isSettled={isSettled} />
                         <Routes>
                             <Route path="main-page" element={<MainPage />} />
-                            <Route path="housing" element={<HousingPage onSettle={() => setIsSettled(true)} />} />
+                            <Route path="housing" element={<HousingPage setIsSettled={setIsSettled} />} />
                             <Route path="personal-info" element={<PersonalInfo />} />
+                            <Route path="documents" element={<DocumentsPage />} />
+                            <Route path="financial-cabinet" element={<FinancialCabinet />} />
                         </Routes>
                     </Layout>
                 } />
@@ -34,4 +38,3 @@ function App() {
 }
 
 export default App;
-
