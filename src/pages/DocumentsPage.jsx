@@ -58,7 +58,7 @@ const DocumentsPage = () => {
             </button>
 
             {isModalOpen && (
-                <div className="modal-overlay">
+                <div className="modal-container">
                     <div className="modal">
                         <h2>Новый документ</h2>
                         <select
@@ -81,7 +81,7 @@ const DocumentsPage = () => {
                             </button>
                             <button
                                 className="modal-close"
-                                onClick={() => setIsModalOpen(false)} // Закрытие модального окна
+                                onClick={() => setIsModalOpen(false)}
                             >
                                 Отменить
                             </button>
@@ -89,6 +89,7 @@ const DocumentsPage = () => {
                     </div>
                 </div>
             )}
+
         </div>
     );
 };

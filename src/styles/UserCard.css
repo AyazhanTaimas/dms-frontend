@@ -16,7 +16,7 @@
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .user-name {
@@ -29,54 +29,6 @@
     display: flex;
     flex-direction: column; /* Теперь кнопки по вертикали */
     gap: 10px;
-}
-
-.profile-btn,
-.logout-btn {
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: #007bff;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-}
-
-.profile-btn:hover,
-.logout-btn:hover {
-    color: #0056b3;
-}
-
-.user-card {
-    position: fixed;
-    top: 70px;
-    right: 10px;
-    width: 280px;
-    background: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 1000;
-    text-align: center;
-}
-
-.user-photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.user-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.user-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     align-items: center;
 }
 
@@ -85,7 +37,7 @@
     background: none;
     border: none;
     font-size: 16px;
-    color: #007bff;
+    color: #6545e0;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -100,14 +52,14 @@
 
 .profile-btn:hover,
 .logout-btn:hover {
-    color: #0056b3;
+    color: #4D1A9F;
 }
 
 /* Круглая кнопка закрытия (крестик) в левом верхнем углу */
 .close-btn-circle {
-    position: absolute;
-    top: 15px;
-    left: 15px;
+    position: relative;
+    top: 10px;
+    left: 10px;
     width: 30px;
     height: 30px;
     background: #6C2DC7;
@@ -128,3 +80,4 @@
     background: darkred;
     transform: scale(1.1);
 }
+

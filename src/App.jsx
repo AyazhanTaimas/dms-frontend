@@ -10,6 +10,7 @@ import PersonalInfo from "./pages/PersonalInfo";
 import DocumentsPage from "./pages/DocumentsPage";
 import FinancialCabinet from "./pages/FinancialCabinet.jsx";
 import RepairRequest from "./pages/RepairRequest.jsx";
+import PERegistration from "./pages/PERegistration.jsx";
 
 function App() {
     const [isSettled, setIsSettled] = useState(false);
@@ -31,6 +32,7 @@ function App() {
                             <Route path="documents" element={<DocumentsPage />} />
                             <Route path="financial-cabinet" element={<FinancialCabinet />} />
                             <Route path="repair-requests" element={<RepairRequest />} />
+                            <Route path="pe-registration" element={<PERegistration />} />
                         </Routes>
                     </Layout>
                 } />

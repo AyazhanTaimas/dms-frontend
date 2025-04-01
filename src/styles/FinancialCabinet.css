@@ -19,14 +19,16 @@
 .period-section {
     text-align: left;
     margin-bottom: 20px;
+
 }
 
 .period-select {
-    padding: 10px;
     font-size: 16px;
-    border-radius: 5px;
     border: 1px solid #ccc;
-    background-color: white;
+    background: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Контейнер с оплатами (расположение горизонтально) */

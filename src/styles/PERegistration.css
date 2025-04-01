@@ -1,0 +1,59 @@
+.pe-registration {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    margin-top: -1080px;
+    margin-left: -270px;
+
+}
+
+.pe-registration h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.pe-registration form {
+    display: flex;
+    flex-direction: column;
+}
+
+.pole {
+    background: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pe-registration label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.pe-registration select,
+.pe-registration input {
+    background: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.pe-registration button {
+    background-color: #6545e0;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pe-registration button:hover {
+    background-color: #4D1A9F;
+}
+
+

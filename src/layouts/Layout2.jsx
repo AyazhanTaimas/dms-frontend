@@ -38,7 +38,7 @@ const Layout2 = ({ isSettled }) => {
                                 <img src="/repair.png" alt="Repair Requests" className="nav-icon" />
                                 Запросы на ремонт
                             </NavLink>
-                            <NavLink to="/sports-signup" className={({ isActive }) => (isActive ? "active" : "")}>
+                            <NavLink to="/pe-registration" className={({ isActive }) => (isActive ? "active" : "")}>
                                 <img src="/sports.png" alt="Sports Signup" className="nav-icon" />
                                 Запись на занятия физкультурой
                             </NavLink>
