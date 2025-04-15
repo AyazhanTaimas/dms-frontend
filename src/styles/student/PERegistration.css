@@ -1,0 +1,149 @@
+.pe-registration {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    margin-top: -1080px;
+    margin-left: -270px;
+
+}
+
+.pe-registration h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.pe-registration form {
+    display: flex;
+    flex-direction: column;
+}
+
+.pole {
+    background: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pe-registration label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.pe-registration select,
+.pe-registration input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: white;
+    color: #888; /* Серый текст по умолчанию */
+    font-size: 18px;
+    min-width: 280px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    appearance: none;
+    width: 100px;
+}
+
+.pe-registration button {
+    background-color: #6545e0;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pe-registration button:hover {
+    background-color: #4D1A9F;
+}
+
+.makeup-section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.makeup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.makeup-header h2 {
+    margin: 0;
+}
+
+.makeup-header button {
+    font-size: 20px;
+    padding: 5px 12px;
+    border: none;
+    background-color: #6545e0;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.makeup-header button:hover {
+    background-color: #4D1A9F;
+}
+
+.makeup-container {
+    margin-top: 30px;
+}
+
+.makeup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-btn {
+    font-size: 24px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.modal label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+

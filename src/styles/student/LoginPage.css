@@ -6,9 +6,10 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: url("public/bg-image.png") !important;
+    background: url("../../../public/bg-image.png") no-repeat center center fixed;
     background-size: cover;
 }
+
 
 /* Контейнер для логотипа и DMS */
 .logo-container {

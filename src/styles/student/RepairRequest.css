@@ -1,0 +1,56 @@
+/* Общие стили для контейнера */
+.repair-requests-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Заголовок и кнопка */
+.repair-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Кнопка добавления */
+.add-button {
+    background: #6545e0;
+    color: white;
+    font-size: 20px;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 15%;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background: #4D1A9F;
+}
+
+/* Стили для таблицы */
+.repair-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.repair-table th, .repair-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.repair-table th {
+    background: #007bff;
+    color: white;
+}
+
+.repair-table tbody tr {
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.repair-table tbody tr:hover {
+    background: #f1f1f1;
+}

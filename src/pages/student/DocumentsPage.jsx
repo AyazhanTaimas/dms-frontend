@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/DocumentPage.css";
+import "../../styles/student/DocumentPage.css";
 
 const DocumentsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false); // Для управления состоянием модального окна

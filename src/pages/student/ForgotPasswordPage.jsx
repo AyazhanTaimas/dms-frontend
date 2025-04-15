@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import "../styles/ForgotPassword.css";
+import "../../styles/student/ForgotPassword.css";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
     return (
         <div className="forgot-password-container">
             <div className="forgot-password-box">
-                <a href="/" className="back-button">
+                <a href="/public" className="back-button">
                     <FaArrowLeft /> Назад
                 </a>
                 <h2>Восстановление пароля</h2>

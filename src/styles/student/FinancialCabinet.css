@@ -16,23 +16,26 @@
 }
 
 /* Блок с выбором периода */
-.period-section {
-    text-align: left;
-    margin-bottom: 20px;
 
-}
 
 .period-select {
-    font-size: 16px;
+    padding: 5px;
     border: 1px solid #ccc;
-    background: white;
-    padding: 15px;
-    border-radius: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: white;
+    color: #888; /* Серый текст по умолчанию */
+    font-size: 18px;
+    min-width: 280px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    appearance: none;
+    width: 100px;
 }
 
 /* Контейнер с оплатами (расположение горизонтально) */
 .payments-container {
+
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -41,6 +44,7 @@
 
 /* Блоки оплат (предыдущие и предстоящие) */
 .past-payments, .upcoming-payments {
+    margin-top: 20px;
     flex: 1;
     padding: 15px;
     background-color: #f9f9f9;

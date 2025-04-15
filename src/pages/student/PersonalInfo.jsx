@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/PersonalInfo.css";
-import ChangePasswordForPersonalInfo from "../components/ChangePasswordForPersonalInfo.jsx";
+import "../../styles/student/PersonalInfo.css";
+import ChangePasswordForPersonalInfo from "../../components/ChangePasswordForPersonalInfo.jsx";
 
 const PersonalInfo = () => {
     const [email, setEmail] = useState("a_tokanova@kbtu.kz");

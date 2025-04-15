@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/FinancialCabinet.css";
+import "../../styles/student/FinancialCabinet.css";
 
 const pastPayments = [
     { id: 1, paymentId: "123456", month: "Март", date: "25.03.2025", link: "#" },

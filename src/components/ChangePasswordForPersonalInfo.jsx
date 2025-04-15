@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/ChangePasswordForPersonalInfo.css";
+import "../styles/student/ChangePasswordForPersonalInfo.css";
 
 const ChangePasswordModal = ({ onClose }) => {
     const [oldPassword, setOldPassword] = useState("");

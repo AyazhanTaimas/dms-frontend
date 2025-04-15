@@ -1,14 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
 
-// Создание клиента API
 const API = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api', // Базовый URL для API Laravel
+    baseURL: "http://127.0.0.1:8000/api", // Замените на свой URL API
 });
 
-// Добавляем токен, если он есть в LocalStorage
-const token = localStorage.getItem('token');
-if (token) {
-    API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-}
+API.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            config.headers["Authorization"] = `Bearer ${token}`;
+        }
+
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 export default API;

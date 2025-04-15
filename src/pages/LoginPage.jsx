@@ -1,27 +1,44 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import API from "../api";
-import "../styles/LoginPage.css";
+import API from "../api"; // Твой файл с настройками API
+import "../styles/student/LoginPage.css";
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(null);
+        setError("");
 
         try {
+            // Получаем CSRF cookie для Sanctum
+            await API.get("/sanctum/csrf-cookie");
+
+            // Отправляем запрос на логин
             const response = await API.post("/login", { email, password });
+
+            console.log("Login successful:", response.data);
+
+            // Сохраняем токен в localStorage
             localStorage.setItem("token", response.data.token);
-            API.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
-            navigate("/main-page");
+
+            localStorage.setItem("user", JSON.stringify(response.data.user.username));
+
+            // Переход на страницу студента
+            navigate("/student");
         } catch (err) {
-            setError("Неверная почта или пароль");
+            if (err.response) {
+                // Обработка ошибки с сообщением от API
+                setError(err.response.data.message || "Неверная почта или пароль");
+            } else {
+                // Обработка ошибки сервера
+                setError("Ошибка сервера");
+            }
         }
     };
 
@@ -68,7 +85,6 @@ const LoginPage = () => {
 
                     <button type="submit" className="login-button">Войти</button>
 
-                    {/* Ошибка отображается под кнопкой */}
                     {error && <p className="error-message">{error}</p>}
                 </form>
             </div>
@@ -77,5 +93,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-

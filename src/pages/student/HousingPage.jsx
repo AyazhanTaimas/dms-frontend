@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/HousingPage.css";
+import "../../styles/student/HousingPage.css";
 
 const HousingPage = ({ setIsSettled }) => {
     const [housingInfo, setHousingInfo] = useState({

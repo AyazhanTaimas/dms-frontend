@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Notification.css";
+import "../styles/student/Notification.css";
 
 const Notification = ({ isOpen, onClose, notifications = [] }) => {
     if (!isOpen) return null; // Не рендерим, если закрыто
