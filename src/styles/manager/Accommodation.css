@@ -1,0 +1,43 @@
+.accommodation-container {
+    margin-left: 200px;
+    margin-top: -800px;
+    padding: 20px;
+}
+
+.accommodation-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.accommodation-table-header,
+.accommodation-table-row {
+    display: grid;
+    grid-template-columns: 40px 180px 150px 80px 80px 80px 120px 140px;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+}
+
+.accommodation-table-header {
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+
+.actions button {
+    margin-right: 8px;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.accept-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.reject-btn {
+    background-color: #f44336;
+    color: white;
+}

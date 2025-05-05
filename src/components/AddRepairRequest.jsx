@@ -23,7 +23,7 @@ const AddRepairRequest = ({ closeModal, addRequest }) => {
             alert("Пожалуйста, заполните все поля!");
             return;
         }
-        addRequest(formData); // Добавляем запрос в основной список
+        addRequest(formData);
         closeModal();
     };
 
@@ -31,7 +31,7 @@ const AddRepairRequest = ({ closeModal, addRequest }) => {
         <div className="modal-overlay" onClick={closeModal}>
             <div
                 className="modal-content"
-                onClick={(e) => e.stopPropagation()} // чтобы клик внутри формы не закрывал модалку
+                onClick={(e) => e.stopPropagation()}
             >
                 <h3>Добавить новый запрос на ремонт</h3>
                 <form onSubmit={handleSubmit}>

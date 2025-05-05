@@ -2,9 +2,9 @@ import React from "react";
 import "../styles/student/Notification.css";
 
 const Notification = ({ isOpen, onClose, notifications = [] }) => {
-    if (!isOpen) return null; // Не рендерим, если закрыто
+    if (!isOpen) return null;
 
-    console.log("Notifications:", notifications); // Проверка данных
+    console.log("Notifications:", notifications);
 
     return (
         <div className={`notification-sidebar ${isOpen ? "open" : ""}`}>

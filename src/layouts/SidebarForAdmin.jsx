@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../styles/Layout2.css"; // Подключи нужный CSS, если у тебя отдельный для админа
+import "../styles/Layout2.css";
 
 const SidebarForAdmin = () => {
     return (
         <div className="layout-container">
             <aside className="sidebar">
                 <nav className="sidebar-nav">
-                    <NavLink to="/main" className={({ isActive }) => (isActive ? "active" : "")}>
+                    <NavLink to="/main-page" className={({ isActive }) => (isActive ? "active" : "")}>
                         <img src="/lenta2.png" alt="Главная" className="nav-icon" />
                         Главная
                     </NavLink>

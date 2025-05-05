@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import Layout2 from "./layouts/Layout2"; // Левый Sidebar
+import Layout2 from "./layouts/Layout2";
 import LoginPage from "./pages/LoginPage.jsx";
 import ForgotPasswordPage from "./pages/student/ForgotPasswordPage.jsx";
 import MainPage from "./pages/MainPage.jsx";
-import Layout from "./layouts/Layout"; // Верхняя панель
+import Layout from "./layouts/Layout";
 import HousingPage from "./pages/student/HousingPage.jsx";
 import PersonalInfo from "./pages/student/PersonalInfo.jsx";
 import DocumentsPage from "./pages/student/DocumentsPage.jsx";
@@ -14,6 +14,9 @@ import PERegistration from "./pages/student/PERegistration.jsx";
 
 import SidebarForAdmin from "./layouts/SidebarForAdmin.jsx";
 import UsersPage from "./pages/admin/UsersPage.jsx";
+import UserInformation from "./components/UsersInformation.jsx";
+import SidebarForManager from "./layouts/SidebarForManager.jsx";
+import Accommodation from "./pages/manager/Accommodation.jsx";
 
 function App() {
      const [isSettled, setIsSettled] = useState(false);
@@ -23,7 +26,7 @@ function App() {
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-                {/* Student Layout*/}
+                {/* Student Layout
                  <Route path="/*" element={
                     <Layout>
                         <Layout2 isSettled={isSettled} />
@@ -37,21 +40,34 @@ function App() {
                             <Route path="pe-registration" element={<PERegistration />} />
                         </Routes>
                     </Layout>
-                } />
+                } />*/}
 
 
 
 
-                {/* Admin Layout
+                {/* Admin Layout */}
                 <Route path="/*" element={
                     <Layout>
                         <SidebarForAdmin />
                         <Routes>
                             <Route path="main-page" element={<MainPage />} />
-                            <Route path="users" element={<UsersPage />} />
+                            <Route path="admin/users" element={<UsersPage />} />
+                            <Route path="admin/users/:id" element={<UserInformation />} />
+                        </Routes>
+                    </Layout>
+                } />
+
+                {/* Manager Layout
+                <Route path="/*" element={
+                    <Layout>
+                        <SidebarForManager />
+                        <Routes>
+                            <Route path="main-page" element={<MainPage />} />
+                            <Route path="/manager/accommodation" element={<Accommodation />} />
                         </Routes>
                     </Layout>
                 } />*/}
+
             </Routes>
         </Router>
     );

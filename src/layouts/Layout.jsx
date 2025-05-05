@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Notification from "../components/Notification";
 import UserCard from "../components/UserCard";
 import "../styles/Layout.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import API from "../api.js";
 
 const Layout = ({ children }) => {
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
     const [isUserCardOpen, setIsUserCardOpen] = useState(false);
+    const [photo, setPhoto] = useState(null);
+
+    useEffect(() => {
+        API.get("/student/name")
+            .then((response) => {
+                setPhoto(response.data.photo);
+            })
+            .catch((error) => {
+                console.error("Ошибка при получении фото пользователя:", error);
+            });
+    }, []);
 
     return (
         <div className="layout-container">
             <header className="layout-header">
                 <div className="logo-container">
                     <img src="/logo.png" alt="Logo" className="logo" />
-                    <img src="/dmsforlayout.png" alt="Dms" className="dms" />
+                    <img src="/DMS.png" alt="Dms" className="dms" />
                 </div>
 
                 <div className="header-icons">
@@ -28,7 +40,7 @@ const Layout = ({ children }) => {
                     />
 
                     <img
-                        src="/user-icon.png"
+                        src={photo || "/user-icon.png"} // ← Показываем фото, если есть
                         alt="User"
                         className="user-avatar"
                         onClick={() => {
@@ -52,4 +64,3 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
-

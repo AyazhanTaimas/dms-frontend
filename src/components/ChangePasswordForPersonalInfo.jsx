@@ -1,27 +1,54 @@
 import React, { useState } from "react";
 import "../styles/student/ChangePasswordForPersonalInfo.css";
+import API from "../api.js";
 
 const ChangePasswordModal = ({ onClose }) => {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
+        setSuccess("");
+
         if (newPassword !== confirmPassword) {
-            setError("Новый пароль и подтверждение не совпадают");
+            setError("Новый пароль и подтверждение не совпадают.");
             return;
         }
-        // Логика смены пароля (можно добавить API-запрос)
-        console.log("Пароль изменён:", { oldPassword, newPassword });
-        onClose();
+
+        try {
+            const response = await API.post("/password", {
+                old_password: oldPassword,
+                new_password: newPassword,
+                new_password_confirmation: confirmPassword,
+            });
+
+            setSuccess(response.data.message || "Пароль успешно изменён.");
+            // Очищаем поля
+            setOldPassword("");
+            setNewPassword("");
+            setConfirmPassword("");
+
+            // Закрыть модалку через 1.5 секунды
+            setTimeout(() => {
+                onClose();
+            }, 1500);
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);
+            } else {
+                setError("Ошибка при изменении пароля.");
+            }
+        }
     };
 
     return (
         <div className="modal-overlay">
             <div className="modal-container">
-                <h2>Измененить пароль</h2>
+                <h2>Изменить пароль</h2>
                 <form onSubmit={handleSubmit}>
                     <label>Старый пароль</label>
                     <input
@@ -48,6 +75,7 @@ const ChangePasswordModal = ({ onClose }) => {
                     />
 
                     {error && <p className="error">{error}</p>}
+                    {success && <p className="success">{success}</p>}
 
                     <div className="modal-buttons">
                         <button type="submit">Сохранить</button>

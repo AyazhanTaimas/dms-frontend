@@ -5,66 +5,59 @@ import API from "../api.js";
 
 const UserCard = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true); // Добавлено состояние загрузки
+    const [name, setName] = useState("");
+    const [photo, setPhoto] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (isOpen) {
-            // Получаем данные пользователя из localStorage
-            const storedUser = localStorage.getItem("user");
-
-            if (storedUser) {
-                try {
-                    const parsedUser = JSON.parse(storedUser);
-                    if (parsedUser) {
-                        setUser(parsedUser); // Устанавливаем данные пользователя
-                    } else {
-                        console.error("Данные пользователя не содержат необходимые поля");
-                    }
-                } catch (error) {
-                    console.error("Ошибка при парсинге данных пользователя:", error);
-                }
-            } else {
-                console.error("Пользователь не найден в localStorage");
-            }
-            setLoading(false); // Заканчиваем загрузку
+            API.get("/student/name")
+                .then((response) => {
+                    setName(response.data.name);
+                    setPhoto(response.data.photo); // <- добавили фото
+                })
+                .catch((error) => {
+                    console.error("Ошибка при получении имени:", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
         }
     }, [isOpen]);
 
     if (!isOpen) return null;
 
-    // Функция для выхода
-    const handleLogout = async () => {
-        try {
-            // Очистка локального хранилища и заголовков
-            localStorage.removeItem("user");
-            localStorage.removeItem("token");
-
-            // Перенаправление на страницу логина
-            window.location.href = "/";
-        } catch (error) {
-            console.error("Ошибка при выходе:", error);
-        }
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        window.location.href = "/";
     };
 
-    // Переход в профиль
     const handleProfileClick = () => {
-        navigate("/personal_info");
+        navigate("/personal-info");
         onClose();
     };
 
     return (
         <div className="user-card">
             <button className="close-btn" onClick={onClose}>✖</button>
-            <img src="/user-icon.png" alt="User" className="user-avatar" />
+
+            <img
+                src={photo || "/user-icon.png"} // Показываем фото, если оно есть
+                alt="User"
+                className="user-avatar"
+            />
+
             {loading ? (
                 <h2 className="user-name">Загрузка...</h2>
             ) : (
-                <h2 className="user-name">{user ? user.username : "Пользователь не найден"}</h2>
-                )}
-            <p className="user-status">{user ? "Проживающий" : ""}</p>
+                <h2 className="user-name">{name || "Пользователь не найден"}</h2>
+            )}
+
             <div className="user-actions">
-                <button className="profile-btn" onClick={handleProfileClick}>Мой профиль</button>
+                <button className="profile-btn" onClick={handleProfileClick}>
+                    Мой профиль
+                </button>
                 <button className="logout-btn" onClick={handleLogout}>
                     <img src="/logout.png" alt="Logout" className="logout-icon" />
                     Выйти

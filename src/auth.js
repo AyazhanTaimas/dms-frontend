@@ -1,6 +1,5 @@
 import API from './api';
 
-// Функция для входа
 export const login = async (email, password) => {
     try {
         const response = await API.post('/login', { email, password });
@@ -18,7 +17,6 @@ export const login = async (email, password) => {
     }
 };
 
-// Функция для получения текущего пользователя
 export const getCurrentUser = async () => {
     try {
         const response = await API.get('/user');

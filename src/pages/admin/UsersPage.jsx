@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
-//import "../styles/admin/UsersPage.css";
+import { useState } from "react";
+import "../../styles/admin/UsersPage.css";
+import AddUsers from "../../components/AddUsers";
+import UsersInformation from "../../components/UsersInformation";
 
 const users = [
     { id: 1, name: "Иванов Иван", email: "ivanov@example.com", status: "Активен" },
@@ -8,36 +10,53 @@ const users = [
 ];
 
 const UsersPage = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
+
+    const handleUserClick = (user) => {
+        setSelectedUser(user);
+        setIsModalOpen(true);
+    };
+
     return (
-        <div className="p-6 bg-white shadow-xl rounded-2xl">
-            <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold">Список пользователей</h2>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl text-sm">
-                    + Добавить
+        <div className="user-list-container">
+            <div className="user-list-header">
+                <h2 className="user-list-title">Список пользователей</h2>
+                <button className="user-add-button" onClick={() => setIsModalOpen(true)}>
+                    +
                 </button>
             </div>
 
-            {/* Заголовки колонок */}
-            <div className="grid grid-cols-4 font-semibold text-gray-600 border-b pb-2">
+            <div className="user-table-header">
                 <div>ID</div>
                 <div>ФИО</div>
                 <div>E-mail</div>
                 <div>Статус</div>
             </div>
 
-            {/* Список студентов */}
             {users.map((user) => (
-                <div key={user.id} className="grid grid-cols-4 py-2 border-b hover:bg-gray-50">
+                <div key={user.id} className="user-table-row">
                     <div>{user.id}</div>
                     <div>
-                        <Link to={`/users/${user.id}`} className="text-blue-600 hover:underline">
+                        <button className="user-name-button" onClick={() => handleUserClick(user)}>
                             {user.name}
-                        </Link>
+                        </button>
                     </div>
                     <div>{user.email}</div>
                     <div>{user.status}</div>
                 </div>
             ))}
+
+            <AddUsers isOpen={false} onClose={() => {}} />
+
+            {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <button className="modal-close-btn" onClick={() => setIsModalOpen(false)}>×</button>
+                        <UsersInformation user={selectedUser} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

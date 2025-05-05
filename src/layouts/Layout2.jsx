@@ -20,7 +20,7 @@ const Layout2 = ({ isSettled }) => {
                         Купи-Продай
                     </NavLink>
 
-                    {isSettled && (
+
                         <>
                             <NavLink to="/personal-info" className={({ isActive }) => (isActive ? "active" : "")}>
                                 <img src="/personal-info.png" alt="Personal Info" className="nav-icon" />
@@ -43,7 +43,6 @@ const Layout2 = ({ isSettled }) => {
                                 Запись на занятия физкультурой
                             </NavLink>
                         </>
-                    )}
                 </nav>
             </aside>
             <main className="content"></main>

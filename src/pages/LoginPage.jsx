@@ -16,27 +16,21 @@ const LoginPage = () => {
         setError("");
 
         try {
-            // Получаем CSRF cookie для Sanctum
             await API.get("/sanctum/csrf-cookie");
 
-            // Отправляем запрос на логин
             const response = await API.post("/login", { email, password });
 
             console.log("Login successful:", response.data);
 
-            // Сохраняем токен в localStorage
             localStorage.setItem("token", response.data.token);
 
             localStorage.setItem("user", JSON.stringify(response.data.user.username));
 
-            // Переход на страницу студента
-            navigate("/student");
+            navigate("/main-page");
         } catch (err) {
             if (err.response) {
-                // Обработка ошибки с сообщением от API
                 setError(err.response.data.message || "Неверная почта или пароль");
             } else {
-                // Обработка ошибки сервера
                 setError("Ошибка сервера");
             }
         }

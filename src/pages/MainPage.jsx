@@ -42,7 +42,6 @@ const MainPage = () => {
                                 <p className="text-gray-600">{item.content || "Нет содержимого"}</p>
                             </div>
                             <div className="news-image">
-                                {/* Если есть изображение в новости */}
                                 {item.image ? <img src={item.image} alt="News" /> : null}
                             </div>
                         </section>
