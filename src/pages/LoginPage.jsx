@@ -40,7 +40,7 @@ const LoginPage = () => {
         <div className="login-container">
             <div className="logo-container">
                 <img src="/logo.png" alt="Logo" className="logo" />
-                <img src="/DMS.png" alt="DMS" className="dms-text" />
+                <img src="/login_logo.png" alt="DMS" className="dms-text" />
             </div>
 
             <div className="login-box">

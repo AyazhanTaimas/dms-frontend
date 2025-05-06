@@ -1,0 +1,27 @@
+.main-container {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.welcome-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 30px 40px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-box h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.welcome-box p {
+    font-size: 16px;
+    color: #555;
+}

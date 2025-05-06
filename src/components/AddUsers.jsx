@@ -1,9 +1,8 @@
+// AddUsers.jsx
 import React from "react";
 import "../styles/admin/AddUsers.css";
 
-const AddUsers = ({ isOpen, onClose }) => {
-    if (!isOpen) return null;
-
+const AddUsers = ({ onClose }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">

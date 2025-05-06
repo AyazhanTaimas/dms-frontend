@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "../styles/student/PersonalInfo.css";
-import ChangePasswordForPersonalInfo from "./ChangePasswordForPersonalInfo.jsx";
+import ChangePasswordForAdmin from "./ChangePasswordForAdmin.jsx";
 
-const UsersInformation = () => {
-    const [email, setEmail] = useState("a_tokanova@kbtu.kz");
-    const [phone, setPhone] = useState("87071711204");
+const UsersInformation = ({ user }) => {
+    const [email, setEmail] = useState(user.email);
+    const [phone, setPhone] = useState("87071711204");  // Можете также передавать телефон через пропсы
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleSave = () => {
@@ -28,7 +28,7 @@ const UsersInformation = () => {
                     className="personal-info-avatar"
                 />
                 <div className="personal-info-details">
-                    <h3 className="personal-info-name">Токанова Аяжан</h3>
+                    <h3 className="personal-info-name">{user.name}</h3>
                     <p className="personal-info-status">
                         Статус: Проживающий <br />
                         Корпус 1, этаж 2, комната 14Б
@@ -93,9 +93,11 @@ const UsersInformation = () => {
             </div>
 
             {isModalOpen && (
-                <ChangePasswordForPersonalInfo
-                    onClose={() => setIsModalOpen(false)}
-                />
+                <div className="modal-overlay">
+                    <ChangePasswordForAdmin
+                        onClose={() => setIsModalOpen(false)}
+                    />
+                </div>
             )}
 
             <button

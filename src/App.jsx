@@ -17,6 +17,12 @@ import UsersPage from "./pages/admin/UsersPage.jsx";
 import UserInformation from "./components/UsersInformation.jsx";
 import SidebarForManager from "./layouts/SidebarForManager.jsx";
 import Accommodation from "./pages/manager/Accommodation.jsx";
+import News from "./pages/News.jsx";
+import ChangeOfRoom from "./pages/manager/ChangeOfRoom.jsx";
+
+import SidebarForEmployee from "./layouts/SidebarForEmployee.jsx";
+import Main from "./pages/employee/Main.jsx";
+import RepairRequests from "./pages/employee/RepairRequests.jsx";
 
 function App() {
      const [isSettled, setIsSettled] = useState(false);
@@ -40,12 +46,12 @@ function App() {
                             <Route path="pe-registration" element={<PERegistration />} />
                         </Routes>
                     </Layout>
-                } />*/}
+                } /> */}
 
 
 
 
-                {/* Admin Layout */}
+                {/* Admin Layout
                 <Route path="/*" element={
                     <Layout>
                         <SidebarForAdmin />
@@ -53,9 +59,10 @@ function App() {
                             <Route path="main-page" element={<MainPage />} />
                             <Route path="admin/users" element={<UsersPage />} />
                             <Route path="admin/users/:id" element={<UserInformation />} />
+                            <Route path="admin/news" element={<News />} />
                         </Routes>
                     </Layout>
-                } />
+                } />*/}
 
                 {/* Manager Layout
                 <Route path="/*" element={
@@ -64,9 +71,25 @@ function App() {
                         <Routes>
                             <Route path="main-page" element={<MainPage />} />
                             <Route path="/manager/accommodation" element={<Accommodation />} />
+                            <Route path="manager/users" element={<UsersPage />} />
+                            <Route path="manager/users/:id" element={<UserInformation />} />
+                            <Route path="manager/news" element={<News />} />
+                            <Route path="/manager/room-change-requests" element={<ChangeOfRoom />} />
                         </Routes>
                     </Layout>
                 } />*/}
+
+                {/* Employee Layout */}
+                <Route path="/*" element={
+                    <Layout>
+                        <SidebarForEmployee />
+                        <Routes>
+                            <Route path="employee/main" element={<Main />} />
+                            <Route path="employee/requests" element={<RepairRequests />} />
+
+                        </Routes>
+                    </Layout>
+                } />
 
             </Routes>
         </Router>

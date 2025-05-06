@@ -1,0 +1,100 @@
+.repair-container {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.filter-section {
+    margin-bottom: 15px;
+}
+
+.repair-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.repair-table th,
+.repair-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.repair-table th {
+    background-color: #f4f4f4;
+}
+
+.period-select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: white;
+    color: #888; /* Серый текст по умолчанию */
+    font-size: 18px;
+    min-width: 200px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    appearance: none;
+    width: 100px;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    position: relative;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+.modal-images {
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.modal-img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.modal-status {
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

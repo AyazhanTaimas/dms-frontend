@@ -10,19 +10,24 @@ const users = [
 ];
 
 const UsersPage = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+    const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false); // для AddUsers
     const [selectedUser, setSelectedUser] = useState(null);
 
     const handleUserClick = (user) => {
         setSelectedUser(user);
-        setIsModalOpen(true);
+        setIsUserModalOpen(true); // открыть модальное окно с UsersInformation
+    };
+
+    const handleAddUserClick = () => {
+        setIsAddUserModalOpen(true); // открыть модальное окно с AddUsers
     };
 
     return (
         <div className="user-list-container">
             <div className="user-list-header">
                 <h2 className="user-list-title">Список пользователей</h2>
-                <button className="user-add-button" onClick={() => setIsModalOpen(true)}>
+                <button className="user-add-button" onClick={handleAddUserClick}>
                     +
                 </button>
             </div>
@@ -47,12 +52,25 @@ const UsersPage = () => {
                 </div>
             ))}
 
-            <AddUsers isOpen={false} onClose={() => {}} />
-
-            {isModalOpen && (
+            {/* Отображаем AddUsers модалку при isAddUserModalOpen */}
+            {isAddUserModalOpen && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <button className="modal-close-btn" onClick={() => setIsModalOpen(false)}>×</button>
+                        <button className="modal-close-btn" onClick={() => setIsAddUserModalOpen(false)}>
+                            ×
+                        </button>
+                        <AddUsers onClose={() => setIsAddUserModalOpen(false)} />
+                    </div>
+                </div>
+            )}
+
+            {/* Отображаем UsersInformation модалку при isUserModalOpen */}
+            {isUserModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <button className="modal-close-btn" onClick={() => setIsUserModalOpen(false)}>
+                            ×
+                        </button>
                         <UsersInformation user={selectedUser} />
                     </div>
                 </div>
