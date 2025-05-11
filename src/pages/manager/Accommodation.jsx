@@ -1,72 +1,90 @@
-import React from "react";
-import "../../styles/manager/Accommodation.css"; // создайте файл стилей при необходимости
-
-const accommodationRequests = [
-    {
-        id: 1,
-        request: 1235,
-        student: "Айбекова Алия",
-        building: "1",
-        floor: "3",
-        room: "312",
-        documents: "Документ.pdf"
-    },
-    {
-        id: 2,
-        request: 123456,
-        student: "Нурланов Тимур",
-        building: "2",
-        floor: "2",
-        room: "205",
-        documents: "Документ.pdf"
-    }
-];
+import React, { useEffect, useState } from "react";
+import "../../styles/manager/Accommodation.css";
+import API from "../../api.js";
 
 const Accommodation = () => {
+    const [requests, setRequests] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchRequests = () => {
+        API.get("/manager/bookings")
+            .then((res) => {
+                setRequests(Array.isArray(res.data) ? res.data : []);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Ошибка при загрузке заявок:", err);
+                setRequests([]);
+                setLoading(false);
+            });
+    };
+
+    useEffect(() => {
+        fetchRequests();
+    }, []);
+
     const handleAccept = (id) => {
-        console.log(`Заявка №${id} принята`);
-        // здесь можно отправить PUT/POST запрос
+        API.post(`/manager/booking/accept/${id}`)
+            .then(() => {
+                setRequests(prev => prev.filter(req => req.id !== id));
+            })
+            .catch((err) => {
+                console.error("Ошибка при принятии заявки:", err);
+                alert("Ошибка при принятии. Возможно, комната уже заполнена.");
+            });
     };
 
     const handleReject = (id) => {
-        console.log(`Заявка №${id} отклонена`);
-        // здесь можно отправить PUT/POST запрос
+        API.post(`/manager/booking/reject/${id}`)
+            .then(() => {
+                setRequests(prev => prev.filter(req => req.id !== id));
+            })
+            .catch((err) => {
+                console.error("Ошибка при отклонении заявки:", err);
+            });
     };
 
     return (
         <div className="accommodation-container">
             <h2 className="accommodation-title">Заявки на проживание</h2>
 
-            <div className="accommodation-table-header">
-                <div>№</div>
-                <div>Запрос</div>
-                <div>Студент</div>
-                <div>Корпус</div>
-                <div>Этаж</div>
-                <div>Комната</div>
-                <div>Документы</div>
-                <div>Действия</div>
-            </div>
-
-            {accommodationRequests.map((req) => (
-                <div key={req.id} className="accommodation-table-row">
-                    <div>{req.id}</div>
-                    <div>{req.request}</div>
-                    <div>{req.student}</div>
-                    <div>{req.building}</div>
-                    <div>{req.floor}</div>
-                    <div>{req.room}</div>
-                    <div>
-                        <a href={`/${req.documents}`} download>
-                            Перейти
-                        </a>
-                    </div>
-                    <div className="actions">
-                        <button onClick={() => handleAccept(req.id)} className="accept-btn">Принять</button>
-                        <button onClick={() => handleReject(req.id)} className="reject-btn">Отклонить</button>
-                    </div>
-                </div>
-            ))}
+            <table className="accommodation-table">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Студент</th>
+                    <th>Корпус</th>
+                    <th>Этаж</th>
+                    <th>Комната</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loading ? (
+                    <tr>
+                        <td colSpan="6">Загрузка...</td>
+                    </tr>
+                ) : requests.length === 0 ? (
+                    <tr>
+                        <td colSpan="6">Нет заявок на рассмотрение.</td>
+                    </tr>
+                ) : (
+                    requests.map((req, index) => (
+                        <tr key={req.id}>
+                            <td>{index + 1}</td>
+                            <td>{req.user?.name ?? "Неизвестно"}</td>
+                            <td>{req.building?.name ?? "-"}</td>
+                            <td>{req.floor ?? "-"}</td>
+                            <td>{req.room?.room_number ?? "-"}</td>
+                            <td className="actions">
+                                <button onClick={() => handleAccept(req.id)} className="accept-btn">Принять</button>
+                                <button onClick={() => handleReject(req.id)} className="reject-btn">Отклонить</button>
+                            </td>
+                        </tr>
+                    ))
+                )}
+                </tbody>
+            </table>
         </div>
     );
 };

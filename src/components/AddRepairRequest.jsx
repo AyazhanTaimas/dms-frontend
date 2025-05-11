@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/student/AddRepairRequest.css";
+import API from "../api.js";
 
 const AddRepairRequest = ({ closeModal, addRequest }) => {
     const [formData, setFormData] = useState({
-        requestId: "",
+        type: "",
         description: "",
-        status: "В ожидании",
-        date: new Date().toISOString().slice(0, 16),
+        file: null,
+        employee: "",
     });
+
+    const [employees, setEmployees] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        API.get("/student/employees")
+            .then((response) => {
+                console.log("Список сотрудников с сервера:", response.data.data);
+                setEmployees(response.data.data);
+            })
+            .catch((error) => {
+                console.error("Ошибка при загрузке сотрудников:", error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -17,35 +35,64 @@ const AddRepairRequest = ({ closeModal, addRequest }) => {
         }));
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFormData((prevState) => ({
+                ...prevState,
+                file,
+            }));
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!formData.requestId || !formData.description) {
+        const { type, description, employee, file } = formData;
+
+        if (!type || !description || !employee) {
             alert("Пожалуйста, заполните все поля!");
             return;
         }
-        addRequest(formData);
-        closeModal();
+
+        const formDataToSend = new FormData();
+        formDataToSend.append("type", type);
+        formDataToSend.append("description", description);
+        formDataToSend.append("employee", employee); // отправляем employee.id
+        if (file) {
+            formDataToSend.append("file", file);
+        }
+
+        API.post("/student/request", formDataToSend)
+            .then((response) => {
+                console.log("Запрос успешно отправлен:", response.data);
+                if (addRequest && typeof addRequest === "function") {
+                    addRequest(formData);
+                }
+                closeModal();
+            })
+            .catch((error) => {
+                console.error("Ошибка при отправке запроса:", error);
+                alert("Произошла ошибка при отправке запроса. Попробуйте позже.");
+            });
     };
 
     return (
         <div className="modal-overlay" onClick={closeModal}>
-            <div
-                className="modal-content"
-                onClick={(e) => e.stopPropagation()}
-            >
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <h3>Добавить новый запрос на ремонт</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="requestId">ID запроса</label>
+                        <label htmlFor="type">Тип запроса</label>
                         <input
                             type="text"
-                            id="requestId"
-                            name="requestId"
-                            value={formData.requestId}
+                            id="type"
+                            name="type"
+                            value={formData.type}
                             onChange={handleChange}
                             required
                         />
                     </div>
+
                     <div className="form-group">
                         <label htmlFor="description">Описание</label>
                         <textarea
@@ -56,30 +103,35 @@ const AddRepairRequest = ({ closeModal, addRequest }) => {
                             required
                         />
                     </div>
+
                     <div className="form-group">
-                        <label htmlFor="status">Статус</label>
-                        <select
-                            id="status"
-                            name="status"
-                            value={formData.status}
-                            onChange={handleChange}
-                        >
-                            <option value="В ожидании">В ожидании</option>
-                            <option value="В процессе">В процессе</option>
-                            <option value="Завершен">Завершен</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="date">Дата и время</label>
+                        <label htmlFor="file">Прикрепить файл</label>
                         <input
-                            type="datetime-local"
-                            id="date"
-                            name="date"
-                            value={formData.date}
-                            onChange={handleChange}
-                            required
+                            type="file"
+                            id="file"
+                            name="file"
+                            onChange={handleFileChange}
                         />
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="employee">Выбрать сотрудника</label>
+                        <select
+                            id="employee"
+                            name="employee"
+                            value={formData.employee}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">-- Выберите сотрудника --</option>
+                            {employees.map((employee) => (
+                                <option key={employee.employee_id} value={employee.employee_id}>
+                                    {employee.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
                     <div className="form-buttons">
                         <button type="submit" className="submit-button">Сохранить</button>
                         <button type="button" className="cancel-button" onClick={closeModal}>Отменить</button>

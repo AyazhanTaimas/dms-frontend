@@ -11,21 +11,21 @@ const Layout2 = ({ isSettled }) => {
                         <img src="/lenta2.png" alt="Lenta" className="nav-icon" />
                         Лента
                     </NavLink>
+                    <NavLink to="/personal-info" className={({ isActive }) => (isActive ? "active" : "")}>
+                        <img src="/personal-info.png" alt="Personal Info" className="nav-icon" />
+                        Личная информация
+                    </NavLink>
                     <NavLink to="/housing" className={({ isActive }) => (isActive ? "active" : "")}>
                         <img src="/housing.png" alt="Housing" className="nav-icon" />
                         Проживание
                     </NavLink>
-                    <NavLink to="/market" className={({ isActive }) => (isActive ? "active" : "")}>
-                        <img src="/shop.png" alt="Shop" className="nav-icon" />
-                        Купи-Продай
+                    <NavLink to="/pe-registration" className={({ isActive }) => (isActive ? "active" : "")}>
+                        <img src="/sports.png" alt="Sports Signup" className="nav-icon" />
+                        Запись на занятия физкультурой
                     </NavLink>
 
 
                         <>
-                            <NavLink to="/personal-info" className={({ isActive }) => (isActive ? "active" : "")}>
-                                <img src="/personal-info.png" alt="Personal Info" className="nav-icon" />
-                                Личная информация
-                            </NavLink>
                             <NavLink to="/documents" className={({ isActive }) => (isActive ? "active" : "")}>
                                 <img src="/doc.png" alt="Documents" className="nav-icon" />
                                 Документы
@@ -38,11 +38,12 @@ const Layout2 = ({ isSettled }) => {
                                 <img src="/repair.png" alt="Repair Requests" className="nav-icon" />
                                 Запросы на ремонт
                             </NavLink>
-                            <NavLink to="/pe-registration" className={({ isActive }) => (isActive ? "active" : "")}>
-                                <img src="/sports.png" alt="Sports Signup" className="nav-icon" />
-                                Запись на занятия физкультурой
+                            <NavLink to="/buy-sell" className={({ isActive }) => (isActive ? "active" : "")}>
+                                <img src="/shop.png" alt="Shop" className="nav-icon" />
+                                Купи-Продай
                             </NavLink>
                         </>
+
                 </nav>
             </aside>
             <main className="content"></main>
@@ -51,4 +52,3 @@ const Layout2 = ({ isSettled }) => {
 };
 
 export default Layout2;
-

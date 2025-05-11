@@ -11,7 +11,7 @@ const SidebarForEmployee = () => {
                         <img src="/lenta2.png" alt="Главная" className="nav-icon" />
                         Главная
                     </NavLink>
-                    <NavLink to="/admin/profile" className={({ isActive }) => (isActive ? "active" : "")}>
+                    <NavLink to="/personal-info" className={({ isActive }) => (isActive ? "active" : "")}>
                         <img src="/personal-info.png" alt="Личная информация" className="nav-icon" />
                         Личная информация
                     </NavLink>

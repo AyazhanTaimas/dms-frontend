@@ -50,51 +50,66 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.3); /* немного мягче */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    backdrop-filter: blur(4px); /* эффект стекла */
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    width: 500px;
+    background: #ffffff;
+    padding: 24px;
+    width: 520px;
     max-height: 90vh;
     overflow-y: auto;
-    border-radius: 10px;
-    position: relative;
+    border-radius: 16px; /* как у основного контейнера */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
 }
 
 .modal-content h3 {
     margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .modal-images {
-    margin: 10px 0;
+    margin: 16px 0;
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
 .modal-img {
     width: 100px;
-    height: auto;
-    border-radius: 5px;
+    height: 100px;
+    border-radius: 12px;
     object-fit: cover;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .modal-status {
-    margin-top: 10px;
+    margin-top: 12px;
+    font-size: 16px;
+    color: #555;
 }
 
 button {
-    margin-top: 15px;
-    padding: 8px 16px;
-    background: #007bff;
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: #6545e0;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #4D1A9F;
 }

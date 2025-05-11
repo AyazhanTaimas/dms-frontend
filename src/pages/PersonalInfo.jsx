@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../styles/student/PersonalInfo.css";
-import ChangePasswordForPersonalInfo from "../../components/ChangePasswordForPersonalInfo.jsx";
-import API from "../../api.js";
+import "../styles/student/PersonalInfo.css";
+import ChangePasswordForPersonalInfo from "../components/ChangePasswordForPersonalInfo.jsx";
+import API from "../api.js";
 
 const PersonalInfo = () => {
     const [data, setData] = useState(null);
@@ -12,7 +12,7 @@ const PersonalInfo = () => {
     const fileInputRef = useRef(null);
 
     useEffect(() => {
-        API.get("/student/data")
+        API.get("/data")
             .then((response) => {
                 setData(response.data);
                 setPreviewUrl(response.data.photo); // Прямой путь к изображению
@@ -53,11 +53,11 @@ const PersonalInfo = () => {
         }
 
         try {
-            await API.put("/student/update-phone", { phone: data.phone });
+            await API.put("/update-phone", { phone: data.phone });
             alert("Данные успешно обновлены.");
 
             if (photoFile) {
-                const photoResponse = await API.post("/student/update-photo", formData);
+                const photoResponse = await API.post("/update-photo", formData);
                 if (photoResponse.data.photo) {
                     setPreviewUrl(photoResponse.data.photo);
                 }
@@ -97,9 +97,9 @@ const PersonalInfo = () => {
                 />
                 <div className="personal-info-details">
                     <h3 className="personal-info-name">{data.name}</h3>
-                    <p className="personal-info-status">
+                    {/*<p className="personal-info-status">
                         Статус: Проживающий<br />
-                    </p>
+                    </p>*/}
                 </div>
             </div>
 

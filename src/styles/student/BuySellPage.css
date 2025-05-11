@@ -1,0 +1,82 @@
+.buy-sell-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 200px;
+}
+
+.header-right input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-button {
+    background-color: #28a745;
+    color: white;
+    font-size: 20px;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 100px;
+    margin-top: -10px;
+}
+
+.filter-bar {
+
+    margin: 20px 0;
+}
+
+.filter-bar select {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.listing-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.listing-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.listing-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.listing-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.listing-info p {
+    margin: 4px 0 0;
+    color: #555;
+}

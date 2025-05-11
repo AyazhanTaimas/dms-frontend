@@ -1,11 +1,12 @@
 .news-page-container {
     padding: 20px;
     font-family: Arial, sans-serif;
-    margin-left: 100px;
-    margin-top: -900px;
+    margin-left: -120px;
+    margin-top: -1060px;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .news-header {
@@ -70,18 +71,65 @@
 }
 
 .news-table {
-    margin-top: 30px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.news-table-header,
-.news-table-row {
-    display: grid;
-    grid-template-columns: 1fr 3fr 2fr 2fr;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
+/* Скругления углов */
+.news-table th:first-child {
+    border-top-left-radius: 8px;
 }
 
-.news-table-header {
+.news-table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.news-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.news-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+/* Общие стили таблицы */
+.news-table, .news-table th, .news-table td {
+    border: 1px solid #ddd;
+}
+
+.news-table th, .news-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+/* Заголовок */
+.news-table th {
+    background-color: #f4f4f4;
     font-weight: bold;
+}
+/* Добавление вертикальных линий */
+.news-table td {
+    display: flex;
+    align-items: center;       /* Центрирует по вертикали */
+    justify-content: flex-start; /* Прижимает кнопку к левому краю */
+    padding: 12px;
+    border-left: 1px solid #ddd;
+}
+
+.delete-button {
+    background-color: #6545e0;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0; /* убираем отступы */
+}
+
+.delete-button:hover {
+    background-color: #4D1A9F;
 }
 

@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
     const [photo, setPhoto] = useState(null);
 
     useEffect(() => {
-        API.get("/student/name")
+        API.get("/name")
             .then((response) => {
                 setPhoto(response.data.photo);
             })

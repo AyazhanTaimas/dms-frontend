@@ -1,14 +1,23 @@
 /* Контейнер для документов */
+.wrapper {
+    display: flex;
+    justify-content: center; /* центрирует по горизонтали */
+    align-items: flex-start; /* или center — если нужно по вертикали */
+    padding-top: 60px; /* регулируемый верхний отступ */
+    min-height: 100vh; /* чтобы контейнер занимал всю высоту экрана */
+}
+
 .documents-container {
-    width: 1000px;
-    margin: 20px auto;
+    min-width: 800px;
+    margin-top: -330px;     /* поднимаем выше */
+    margin-left: 10px;
+    width: 100%;
+    max-width: 1000px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow-x: auto;
-    margin-top: -800px;
-    margin-left: 200px;
 }
 
 /* Заголовок */
@@ -18,10 +27,28 @@
     margin-bottom: 20px;
 }
 
-/* Таблица документов */
 .documents-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.documents-table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.documents-table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.documents-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.documents-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
 }
 
 table, th, td {
@@ -78,8 +105,8 @@ th {
     color: white;
     font-size: 16px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    border-radius: 12px;
 }
 
 .upload-button:hover {

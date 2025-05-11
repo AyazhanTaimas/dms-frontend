@@ -1,11 +1,14 @@
 .user-list-container {
-    margin-top: -1000px;
     padding: 24px;
     background-color: #ffffff;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     font-family: 'Segoe UI', sans-serif;
-    min-width: 100vh;
+    width: 70%;
+    max-width: 1200px;
+    min-height: 100vh;
+    margin-left: 320px;
+    margin-top: -550px;
 }
 
 .user-list-header {
@@ -16,14 +19,12 @@
 }
 
 .user-list-title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     color: #333;
 }
 
-.user-add-button {
-    display: block;
-    margin: 20px auto;
+.add-user-btn {
     padding: 10px 20px;
     background-color: #6545e0;
     color: white;
@@ -33,22 +34,40 @@
     cursor: pointer;
 }
 
-.user-add-button:hover {
+.add-user-btn:hover {
     background-color: #4D1A9F;
 }
 
 .user-table-header,
 .user-table-row {
     display: grid;
-    grid-template-columns: 1fr 3fr 3fr 2fr;
+    grid-template-columns: 1fr 3fr 3fr 2fr 1fr;
     padding: 12px 0;
     border-bottom: 1px solid #eee;
     align-items: center;
 }
 
 .user-table-header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 2fr 1fr;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    gap: 50px; /* Добавляем gap между столбцами */
+}
+
+.user-table-header {
     font-weight: 600;
     color: #666;
+}
+
+.user-table-header input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0; /* Добавляем отступы сверху и снизу для каждого поля */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .user-table-row a {
@@ -63,3 +82,85 @@
 .user-table-row:hover {
     background-color: #f9fafb;
 }
+
+.delete-user-btn {
+    padding: 5px 10px;
+    background-color: #6545e0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-user-btn:hover {
+    background-color: #4D1A9F;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: -2px;
+}
+
+.add-user-form input,
+.add-user-form select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-user-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6545e0;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-user-form button:hover {
+    background-color: #4D1A9F;
+}
+
+.input-filter {
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+

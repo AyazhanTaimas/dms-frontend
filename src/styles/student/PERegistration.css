@@ -1,55 +1,81 @@
-.pe-registration {
+.pe-registration-container {
     width: 400px;
     margin: 50px auto;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: white;
-    margin-top: -1080px;
-    margin-left: -270px;
-
+    margin-top: -800px;
+    margin-left: -260px;
 }
 
-.pe-registration h1 {
+.pe-registration-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pe-registration-header h2 {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-.pe-registration form {
+.add-button {
+    font-size: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-button:hover {
+    background-color: #388e3c;
+}
+
+.booking-info {
+    background-color: #eaf0ff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.pe-registration-container form {
     display: flex;
     flex-direction: column;
 }
 
-.pole {
-    background: white;
-    padding: 15px;
-    border-radius: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.pe-registration label {
+.pe-registration-container label {
     font-weight: bold;
     margin: 10px 0 5px;
 }
 
-.pe-registration select,
-.pe-registration input {
+.pe-registration-container select,
+.pe-registration-container input[type="time"] {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 12px;
     background-color: white;
-    color: #888; /* Серый текст по умолчанию */
+    color: #888;
     font-size: 18px;
     min-width: 280px;
     cursor: pointer;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
     appearance: none;
-    width: 100px;
 }
 
-.pe-registration button {
+.pe-registration-container button[type="submit"],
+.pe-registration-container button[type="button"] {
     background-color: #6545e0;
     color: white;
     padding: 10px;
@@ -57,42 +83,28 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 15px;
 }
 
-.pe-registration button:hover {
+.pe-registration-container button:hover {
     background-color: #4D1A9F;
 }
 
-.makeup-section {
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-}
-
-.makeup-header {
+.checkbox-label {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 16px;
 }
 
-.makeup-header h2 {
-    margin: 0;
-}
-
-.makeup-header button {
-    font-size: 20px;
-    padding: 5px 12px;
-    border: none;
-    background-color: #6545e0;
-    color: white;
-    border-radius: 6px;
+.checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    accent-color: #6545e0;
     cursor: pointer;
-}
-
-.makeup-header button:hover {
-    background-color: #4D1A9F;
 }
 
 .makeup-container {
@@ -105,15 +117,18 @@
     align-items: center;
 }
 
-.add-btn {
-    font-size: 24px;
-    background: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
+.makeup-header h2 {
+    margin: 0;
+}
+
+.makeup-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.makeup-list li {
+    margin-bottom: 6px;
 }
 
 .modal-overlay {
@@ -122,15 +137,15 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 10;
 }
 
 .modal {
-    background-color: white;
+    background: white;
     padding: 20px;
     border-radius: 10px;
     width: 300px;
@@ -147,3 +162,77 @@
     margin-top: 20px;
 }
 
+.modal-buttons button {
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Кнопка "Отмена" */
+.modal-buttons button[type="button"] {
+    background-color: gray;
+    color: white;
+}
+
+.modal-buttons button[type="button"]:hover {
+    background-color: gray;
+}
+
+/* Кнопка "Записаться" */
+.modal-buttons button[type="submit"] {
+    background-color: #6545e0;
+    color: white;
+}
+
+.modal-buttons button[type="submit"]:hover {
+    background-color: #4D1A9F;
+}
+
+.recovery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recovery-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.recovery-item {
+    background-color: #f5f5f5;
+    border-left: 4px solid #6C2DC7;
+    padding: 12px 16px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recovery-item p {
+    margin: 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.cancel-button.small {
+    background-color: #6545e0;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    margin-left: 130px;
+}
+
+.cancel-button.small:hover {
+    background-color: #4D1A9F;
+}

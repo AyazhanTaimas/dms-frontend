@@ -1,32 +1,63 @@
-import React, { useState } from "react";
-import "../styles/News.css";
+import { useEffect, useState } from "react";
+import API from "../api";
 import AddNews from "../components/AddNews.jsx";
+import "../styles/News.css";
 
 const News = () => {
-    const [newsList, setNewsList] = useState([
-        { id: 1, title: "Обновление платформы", author: "Админ", date: "2025-05-01" }
-    ]);
-
+    const [news, setNews] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [newsToEdit, setNewsToEdit] = useState(null);
 
+    useEffect(() => {
+        fetchNews();
+    }, []);
 
-    const [newNews, setNewNews] = useState({
-        id: "",
-        title: "",
-        author: "",
-        date: ""
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setNewNews((prev) => ({ ...prev, [name]: value }));
+    const fetchNews = () => {
+        API.get("/news")
+            .then((res) => {
+                if (res.data && res.data.news) {
+                    setNews(res.data.news);
+                }
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Ошибка при получении новостей:", err);
+                setLoading(false);
+            });
     };
 
-    const handleAddNews = () => {
-        if (newNews.id && newNews.title && newNews.author && newNews.date) {
-            setNewsList((prev) => [...prev, newNews]);
-            setNewNews({ id: "", title: "", author: "", date: "" });
-        }
+    const addNews = (newItem) => {
+        setNews((prevNews) => [newItem, ...prevNews]);
+    };
+
+    const updateNews = (updatedItem) => {
+        setNews((prevNews) =>
+            prevNews.map((item) =>
+                item.id === updatedItem.id ? updatedItem : item
+            )
+        );
+    };
+
+    const deleteNews = (id) => {
+        API.delete(`/manager/news/${id}`)
+            .then(() => {
+                setNews((prevNews) => prevNews.filter((item) => item.id !== id));
+            })
+            .catch((err) => {
+                console.error("Ошибка при удалении новости:", err);
+                alert("Не удалось удалить новость.");
+            });
+    };
+
+    const handleNewsClick = (item) => {
+        setNewsToEdit(item);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setNewsToEdit(null);
     };
 
     return (
@@ -36,49 +67,55 @@ const News = () => {
                 <button className="add-news-button" onClick={() => setIsModalOpen(true)}>+</button>
             </div>
 
-            <div className="news-inputs">
-                <div className="input-group">
-                    <label>ID</label>
-                    <input type="text" name="id" value={newNews.id} onChange={handleChange}/>
-                </div>
-                <div className="input-group">
-                    <label>Тема</label>
-                    <input type="text" name="title" value={newNews.title} onChange={handleChange}/>
-                </div>
-                <div className="input-group">
-                    <label>Автор</label>
-                    <input type="text" name="author" value={newNews.author} onChange={handleChange}/>
-                </div>
-                <div className="input-group">
-                    <label>Дата</label>
-                    <input type="date" name="date" value={newNews.date} onChange={handleChange}/>
-                </div>
-            </div>
-
-            <div className="news-table">
-
-                {newsList.map((news) => (
-                    <div key={news.id} className="news-table-row">
-                        <div>{news.id}</div>
-                        <div>{news.title}</div>
-                        <div>{news.author}</div>
-                        <div>{news.date}</div>
+            {loading ? (
+                <p>Загрузка новостей...</p>
+            ) : news.length > 0 ? (
+                <div className="news-table">
+                    <div className="news-table-header">
+                        <div>ID</div>
+                        <div>Заголовок</div>
+                        <div>Дата</div>
+                        <div>Действия</div>
                     </div>
-                ))}
-            </div>
+                    {news.map((item) => (
+                        <div key={item.id} className="news-table-row">
+                            <div>{item.id}</div>
+                            <div
+                                onClick={() => handleNewsClick(item)}
+                                style={{ cursor: "pointer", flex: 1 }}
+                            >
+                                {item.title}
+                            </div>
+                            <div>{item.updated_at ? new Date(item.updated_at).toLocaleString('ru-RU') : "—"}</div>
+                            <div>
+                                <button
+                                    className="delete-button"
+                                    onClick={() => {
+                                        if (window.confirm("Вы уверены, что хотите удалить новость?")) {
+                                            deleteNews(item.id);
+                                        }
+                                    }}
+                                >
+                                    Удалить
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p>Нет новостей для отображения.</p>
+            )}
 
             {isModalOpen && (
                 <AddNews
-                    newNews={newNews}
-                    handleChange={handleChange}
-                    handleAddNews={handleAddNews}
-                    onClose={() => setIsModalOpen(false)}
+                    addNews={addNews}
+                    updateNews={updateNews}
+                    newsToEdit={newsToEdit}
+                    onClose={handleCloseModal}
                 />
             )}
-
         </div>
     );
 };
 
 export default News;
-

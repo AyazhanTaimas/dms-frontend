@@ -1,12 +1,12 @@
 .user-card {
     top: 70px;
     right: 10px;
-    width: 340px; /* Увеличено под фото 300px + отступы */
-    height: 150px;
+    width: 400px;
+    height: auto;
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px 10px;
     z-index: 1000;
 
     display: flex;
@@ -17,24 +17,25 @@
 }
 
 .user-photo {
-    width: 280px; /* Увеличено */
-    height: 280px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    margin-left: 20px;
 }
 
 .user-name {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .user-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     align-items: center;
 }
 
@@ -48,40 +49,40 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: color 0.2s ease-in-out;
-}
-
-.logout-icon {
-    width: 18px;
-    height: 18px;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
 }
 
 .profile-btn:hover,
 .logout-btn:hover {
-    color: #4D1A9F;
+    color: darkred;
+    background-color: transparent; /* 🟢 Убирает фон при ховере */
 }
 
-.close-btn-circle {
-    position: absolute; /* сделаем абсолютным для надёжности */
-    top: 10px;
-    left: 10px;
-    width: 30px;
-    height: 30px;
-    background: #6C2DC7;
-    color: white;
+
+.close-btn {
+    position: absolute;
+    top: -7px;
+    right: 10px;
+    background: none;
+    color: #6C2DC7;
     border: none;
-    border-radius: 50%;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s, transform 0.3s;
+    transition: color 0.3s, transform 0.3s;
+    box-shadow: none;
+    padding: 0;
+    margin-top: -0px;
 }
 
-.close-btn-circle:hover {
-    background: darkred;
+.close-btn:hover {
+    color: darkred;
     transform: scale(1.1);
+    background-color: transparent; /* 🟢 Убирает фон при ховере */
 }
+
+

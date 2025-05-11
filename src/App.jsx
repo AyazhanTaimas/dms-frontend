@@ -1,100 +1,100 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import Layout2 from "./layouts/Layout2";
-import LoginPage from "./pages/LoginPage.jsx";
-import ForgotPasswordPage from "./pages/student/ForgotPasswordPage.jsx";
-import MainPage from "./pages/MainPage.jsx";
-import Layout from "./layouts/Layout";
-import HousingPage from "./pages/student/HousingPage.jsx";
-import PersonalInfo from "./pages/student/PersonalInfo.jsx";
-import DocumentsPage from "./pages/student/DocumentsPage.jsx";
-import FinancialCabinet from "./pages/student/FinancialCabinet.jsx";
-import RepairRequest from "./pages/student/RepairRequest.jsx";
-import PERegistration from "./pages/student/PERegistration.jsx";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider, useUser } from './context/UserContext.jsx'; // Импортируем UserContext
+import LoginPage from './pages/LoginPage';
+import MainPage from './pages/MainPage';
+import Layout from './layouts/Layout';
+import Layout2 from './layouts/Layout2';
+import SidebarForManager from './layouts/SidebarForManager';
+import SidebarForEmployee from './layouts/SidebarForEmployee';
+import SidebarForAdmin from './layouts/SidebarForAdmin';
+import ForgotPasswordPage from './pages/student/ForgotPasswordPage';
+import HousingPage from './pages/student/HousingPage';
+import PersonalInfo from './pages/PersonalInfo';
+import DocumentsPage from './pages/student/DocumentsPage';
+import FinancialCabinet from './pages/student/FinancialCabinet';
+import RepairRequest from './pages/student/RepairRequest';
+import PERegistration from './pages/student/PERegistration';
 
-import SidebarForAdmin from "./layouts/SidebarForAdmin.jsx";
-import UsersPage from "./pages/admin/UsersPage.jsx";
-import UserInformation from "./components/UsersInformation.jsx";
-import SidebarForManager from "./layouts/SidebarForManager.jsx";
-import Accommodation from "./pages/manager/Accommodation.jsx";
-import News from "./pages/News.jsx";
-import ChangeOfRoom from "./pages/manager/ChangeOfRoom.jsx";
+import UsersPage from './pages/manager/UsersPage';
+import UserInformation from './components/UsersInformation';
+import Accommodation from './pages/manager/Accommodation';
+import News from './pages/News';
+import ChangeOfRoom from './pages/manager/ChangeOfRoom';
 
-import SidebarForEmployee from "./layouts/SidebarForEmployee.jsx";
-import Main from "./pages/employee/Main.jsx";
-import RepairRequests from "./pages/employee/RepairRequests.jsx";
+import Main from './pages/employee/Main';
+import RepairRequests from './pages/employee/RepairRequests';
+import BuySellPage from "./pages/student/BuySellPage.jsx";
 
 function App() {
-     const [isSettled, setIsSettled] = useState(false);
     return (
-        <Router>
+        <UserProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                    <Route path="/*" element={<LayoutWithSidebar />} />
+                </Routes>
+            </Router>
+        </UserProvider>
+    );
+}
+
+const LayoutWithSidebar = () => {
+    const { role } = useUser(); // Используем контекст для получения роли
+
+    return (
+        <Layout>
+            {/* В зависимости от роли отображаем соответствующую боковую панель */}
+            {role === "student" && <Layout2 />}
+            {role === "manager" && <SidebarForManager />}
+            {role === "admin" && <SidebarForAdmin />}
+            {role === "employee" && <SidebarForEmployee />}
+
+
             <Routes>
-                <Route path="/" element={<LoginPage />} />
-                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-
-                {/* Student Layout
-                 <Route path="/*" element={
-                    <Layout>
-                        <Layout2 isSettled={isSettled} />
-                        <Routes>
-                            <Route path="main-page" element={<MainPage />} />
-                            <Route path="housing" element={<HousingPage setIsSettled={setIsSettled} />} />
-                            <Route path="personal-info" element={<PersonalInfo />} />
-                            <Route path="documents" element={<DocumentsPage />} />
-                            <Route path="financial-cabinet" element={<FinancialCabinet />} />
-                            <Route path="repair-requests" element={<RepairRequest />} />
-                            <Route path="pe-registration" element={<PERegistration />} />
-                        </Routes>
-                    </Layout>
-                } /> */}
-
-
-
-
-                {/* Admin Layout
-                <Route path="/*" element={
-                    <Layout>
-                        <SidebarForAdmin />
-                        <Routes>
-                            <Route path="main-page" element={<MainPage />} />
-                            <Route path="admin/users" element={<UsersPage />} />
-                            <Route path="admin/users/:id" element={<UserInformation />} />
-                            <Route path="admin/news" element={<News />} />
-                        </Routes>
-                    </Layout>
-                } />*/}
-
-                {/* Manager Layout
-                <Route path="/*" element={
-                    <Layout>
-                        <SidebarForManager />
-                        <Routes>
-                            <Route path="main-page" element={<MainPage />} />
-                            <Route path="/manager/accommodation" element={<Accommodation />} />
-                            <Route path="manager/users" element={<UsersPage />} />
-                            <Route path="manager/users/:id" element={<UserInformation />} />
-                            <Route path="manager/news" element={<News />} />
-                            <Route path="/manager/room-change-requests" element={<ChangeOfRoom />} />
-                        </Routes>
-                    </Layout>
-                } />*/}
-
-                {/* Employee Layout */}
-                <Route path="/*" element={
-                    <Layout>
-                        <SidebarForEmployee />
-                        <Routes>
-                            <Route path="employee/main" element={<Main />} />
-                            <Route path="employee/requests" element={<RepairRequests />} />
-
-                        </Routes>
-                    </Layout>
-                } />
-
+                <Route path="main-page" element={<MainPage />} />
+                {role === "student" && (
+                    <>
+                        <Route path="housing" element={<HousingPage />} />
+                        <Route path="personal-info" element={<PersonalInfo />} />
+                        <Route path="documents" element={<DocumentsPage />} />
+                        <Route path="financial-cabinet" element={<FinancialCabinet />} />
+                        <Route path="repair-requests" element={<RepairRequest />} />
+                        <Route path="pe-registration" element={<PERegistration />} />
+                        <Route path="buy-sell" element={<BuySellPage />} />
+                    </>
+                )}
+                {role === "manager" && (
+                    <>
+                        <Route path="/manager/accommodation" element={<Accommodation />} />
+                        <Route path="/manager/users" element={<UsersPage />} />
+                        <Route path="personal-info" element={<PersonalInfo />} />
+                        <Route path="/manager/users/:id" element={<UserInformation />} />
+                        <Route path="/manager/news" element={<News />} />
+                        <Route path="/manager/room-change-requests" element={<ChangeOfRoom />} />
+                    </>
+                )}
+                {role === "admin" && (
+                    <>
+                        <Route path="/admin/users" element={<UsersPage />} />
+                        <Route path="/admin/users/:id" element={<UserInformation />} />
+                        <Route path="/admin/news" element={<News />} />
+                    </>
+                )}
+                {role === "employee" && (
+                    <>
+                        <Route path="/employee/main" element={<Main />} />
+                        <Route path="personal-info" element={<PersonalInfo />} />
+                        <Route path="/employee/requests" element={<RepairRequests />} />
+                    </>
+                )}
             </Routes>
-        </Router>
+        </Layout>
     );
 }
 
 export default App;
+
+
 

@@ -1,109 +1,135 @@
 .financial-container {
-    margin-top: -1050px;
-    max-width: 900px;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    width: 1000px;
-    margin-left: 100px;
+    font-family: Arial, sans-serif;
+    margin-left: 280px;
+    margin-top: -960px;
 }
+
 
 .financial-title {
     text-align: left;
-    font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+
 }
 
-/* Блок с выбором периода */
-
-
-.period-select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    background-color: white;
-    color: #888; /* Серый текст по умолчанию */
-    font-size: 18px;
-    min-width: 280px;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-    appearance: none;
-    width: 100px;
-}
-
-/* Контейнер с оплатами (расположение горизонтально) */
-.payments-container {
-
+.cards-row {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    width: 900px;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+
 }
 
-/* Блоки оплат (предыдущие и предстоящие) */
-.past-payments, .upcoming-payments {
-    margin-top: 20px;
+.card{
     flex: 1;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Таблица предыдущих оплат */
-.payments-table {
-    margin-top: 20px;
-    width: 600px;
-    border-collapse: collapse;
-
-}
-
-.payments-table th, .payments-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    min-width: 300px;
+    max-width: 350px;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-.payments-table th {
-    background-color: #f4f4f4;
+.balance-card {
+    background-color: #6545e0; /* светло-зелёный */
 }
 
-.payment-link {
-    color: #007bff;
-    text-decoration: none;
+.balance-amount {
+    font-size: 40px;
+    color: #f4f4f4;
+    font-weight: bold;
 }
 
-.payment-link:hover {
-    text-decoration: underline;
+.kaspi-image {
+    width: 200px;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 8px;
 }
 
-/* Предстоящие оплаты */
-.upcoming-payment {
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.warning-text {
+    color: #d32f2f;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
-.upcoming-payment p {
-    margin: 5px 0;
+.test-amount-input {
+    background: white;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 290px;
 }
 
 .pay-button {
-    width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #6545e0;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    width: 200px;
+    height: 40px;
 }
 
 .pay-button:hover {
     background-color: #4D1A9F;
+}
+
+.balance{
+    color: #f4f4f4;
+
+}
+
+.text{
+    font-size: 25px;
+}
+
+/* Секция истории платежей */
+.history-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-container h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: grey;
+    text-align: left;
+}
+
+/* Таблица истории */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+
+}
+
+.history-table th,
+.history-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+
+}
+
+.history-table th {
+    background-color: #eaeaea;
+    font-weight: 600;
+
+}
+
+.history-table tr:nth-child(even) {
+    background-color: #f4f4f4;
+
+}
+
+.history-table tr:hover {
+    background-color: #e0f7fa;
 }

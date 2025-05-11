@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api.js";
-
 import "../../styles/student/HousingPage.css";
+import HousingInfoPage from "../../components/HousingInfoPage.jsx";
 
 const HousingPage = ({ setIsSettled }) => {
     const [housingInfo, setHousingInfo] = useState({
@@ -13,8 +13,25 @@ const HousingPage = ({ setIsSettled }) => {
     const [buildings, setBuildings] = useState([]);
     const [floors, setFloors] = useState([]);
     const [rooms, setRooms] = useState([]);
-
     const [applicationStatus, setApplicationStatus] = useState(null);
+    const [showInfo, setShowInfo] = useState(false);
+
+    // Проверка текущего статуса при монтировании страницы
+    useEffect(() => {
+        API.get('/student/booking/status')
+            .then(res => {
+                const status = res.data.status;
+                setApplicationStatus(status);
+
+                if (status === "accepted") {
+                    setIsSettled(true);
+                    setShowInfo(true);
+                }
+            })
+            .catch(err => {
+                console.error("Ошибка при получении статуса при инициализации", err);
+            });
+    }, []);
 
     // Загрузка корпусов
     useEffect(() => {
@@ -25,14 +42,14 @@ const HousingPage = ({ setIsSettled }) => {
                 } else if (res.data.buildings) {
                     setBuildings(res.data.buildings);
                 } else {
-                    setBuildings([]);
                     console.error("Некорректный формат ответа от /student/buildings", res.data);
+                    setBuildings([]);
                 }
             })
             .catch(err => {
                 console.error("Ошибка при загрузке корпусов", err);
-                setBuildings([]);
                 alert("Ошибка при загрузке данных.");
+                setBuildings([]);
             });
     }, []);
 
@@ -74,42 +91,51 @@ const HousingPage = ({ setIsSettled }) => {
             building_id: housingInfo.building,
             floor: housingInfo.floor,
             room_id: housingInfo.room
-        }).then(() => {
-            alert("Заявка успешно отправлена. Ожидайте подтверждения.");
-            setApplicationStatus("pending");
-        }).catch(err => {
-            alert("Ошибка при отправке заявки");
-            console.error(err);
-        });
+        })
+            .then(() => {
+                alert("Заявка успешно отправлена. Ожидайте подтверждения.");
+                setApplicationStatus("pending");
+            })
+            .catch(err => {
+                alert("Ошибка при отправке заявки");
+                console.error(err);
+            });
     };
 
-    // Проверка статуса заявки
+    // Polling статуса заявки
     useEffect(() => {
         let intervalId;
 
-        const checkStatus = async () => {
+        async function checkStatus() {
             try {
-                const res = await API.get('/manager/booking/accept/5');
-                if (res.status === 200 && res.data.status === "accepted") {
-                    setIsSettled(true); // Заявка принята, открываем доступ
-                    clearInterval(intervalId); // Останавливаем проверку
-                } else {
-                    setApplicationStatus(res.data.status);
+                const res = await API.get('/student/booking/status');
+                const status = res.data.status;
+                setApplicationStatus(status);
+
+                if (status === "accepted") {
+                    setIsSettled(true);
+                    localStorage.setItem("isSettled", "true"); // ✅ сохраняем в localStorage
+                    setShowInfo(true);
                 }
-            } catch (error) {
-                console.error("Ошибка при получении статуса заявки", error);
-                clearInterval(intervalId); // Прекращаем проверку при ошибке
+
+            } catch (err) {
+                console.error("Ошибка при проверке статуса", err);
+                clearInterval(intervalId);
             }
-        };
+        }
 
         if (applicationStatus === "pending") {
-            checkStatus(); // Проверим сразу один раз
-            intervalId = setInterval(checkStatus, 5000); // И начнём интервал
+            intervalId = setInterval(checkStatus, 5000);
+            checkStatus(); // сразу проверить при старте
         }
 
         return () => clearInterval(intervalId);
-    }, [applicationStatus]);
+    }, [applicationStatus, setIsSettled]);
 
+    // Показ информации, если заселён
+    if (showInfo) {
+        return <HousingInfoPage />;
+    }
 
     return (
         <div className="housing-container">
@@ -118,16 +144,14 @@ const HousingPage = ({ setIsSettled }) => {
                 <div className="selection-block">
                     <h2>Корпус</h2>
                     <select
-                        onChange={(e) =>
-                            setHousingInfo(prev => ({
-                                ...prev,
-                                building: e.target.value,
-                                floor: "",
-                                room: ""
-                            }))
-                        }
-                        className="selection-dropdown"
                         value={housingInfo.building}
+                        onChange={(e) => setHousingInfo(prev => ({
+                            ...prev,
+                            building: e.target.value,
+                            floor: "",
+                            room: ""
+                        }))}
+                        className="selection-dropdown"
                     >
                         <option value="">Выберите корпус</option>
                         {buildings.map((building) => (
@@ -141,22 +165,18 @@ const HousingPage = ({ setIsSettled }) => {
                 <div className="selection-block">
                     <h2>Этаж</h2>
                     <select
-                        onChange={(e) =>
-                            setHousingInfo(prev => ({
-                                ...prev,
-                                floor: e.target.value,
-                                room: ""
-                            }))
-                        }
-                        disabled={!housingInfo.building}
-                        className="selection-dropdown"
                         value={housingInfo.floor}
+                        disabled={!housingInfo.building}
+                        onChange={(e) => setHousingInfo(prev => ({
+                            ...prev,
+                            floor: e.target.value,
+                            room: ""
+                        }))}
+                        className="selection-dropdown"
                     >
                         <option value="">Выберите этаж</option>
-                        {floors.map((floor, index) => (
-                            <option key={index} value={floor}>
-                                {floor}
-                            </option>
+                        {floors.map((floor, idx) => (
+                            <option key={idx} value={floor}>{floor}</option>
                         ))}
                     </select>
                 </div>
@@ -164,15 +184,13 @@ const HousingPage = ({ setIsSettled }) => {
                 <div className="selection-block">
                     <h2>Комната</h2>
                     <select
-                        onChange={(e) =>
-                            setHousingInfo(prev => ({
-                                ...prev,
-                                room: e.target.value
-                            }))
-                        }
-                        disabled={!housingInfo.floor}
-                        className="selection-dropdown"
                         value={housingInfo.room}
+                        disabled={!housingInfo.floor}
+                        onChange={(e) => setHousingInfo(prev => ({
+                            ...prev,
+                            room: e.target.value
+                        }))}
+                        className="selection-dropdown"
                     >
                         <option value="">Выберите комнату</option>
                         {rooms.map((room) => (

@@ -1,10 +1,11 @@
 /* Общие стили для контейнера */
 .repair-container {
-    margin-top: -1100px;
+    margin-top: -1060px;
     padding: 20px;
-    max-width: 1200px;
+    width: 740px;
    /* margin: 0 auto; */
-    margin-left: -250px;
+    margin-left: -50px;
+
 }
 
 
@@ -18,7 +19,7 @@
 
 /* Кнопка добавления */
 .add-button {
-    background: #6545e0;
+    background: #6545e0 !important;
     color: white;
     font-size: 20px;
     border: none;
@@ -35,8 +36,26 @@
 /* Стили для таблицы */
 .repair-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.repair-table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.repair-table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.repair-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.repair-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
 }
 
 .repair-table th, .repair-table td {
@@ -46,8 +65,13 @@
 }
 
 .repair-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.repair-table th {
     background: #007bff;
-    color: white;
+    color: black;
 }
 
 .repair-table tbody tr {

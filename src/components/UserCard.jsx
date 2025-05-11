@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/student/UserCard.css";
 import API from "../api.js";
+import { useUser } from '../context/UserContext';
+
 
 const UserCard = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [photo, setPhoto] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { clearRole } = useUser();
+
 
     useEffect(() => {
         if (isOpen) {
-            API.get("/student/name")
+            API.get("/name")
                 .then((response) => {
                     setName(response.data.name);
                     setPhoto(response.data.photo); // <- добавили фото
@@ -30,6 +34,8 @@ const UserCard = ({ isOpen, onClose }) => {
     const handleLogout = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        localStorage.removeItem('role');
+        clearRole(); // обнуляем роль в контексте
         window.location.href = "/";
     };
 
@@ -68,3 +74,4 @@ const UserCard = ({ isOpen, onClose }) => {
 };
 
 export default UserCard;
+

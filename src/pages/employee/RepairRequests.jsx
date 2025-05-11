@@ -1,96 +1,123 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/employee/RepairRequests.css";
+import API from "../../api";
 
 const RepairRequests = () => {
-    const [period, setPeriod] = useState("all");
+    const [requests, setRequests] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [selectedRequest, setSelectedRequest] = useState(null);
 
-    const requests = [
-        {
-            id: 1,
-            title: "Починить кран",
-            date: "2025-05-01",
-            employee: "Иванов",
-            status: "В процессе",
-            type: "Сантехника",
-            description: "Кран на кухне подтекает.",
-            images: ["/photos/leak1.jpg", "/photos/leak2.jpg"]
-        },
-        {
-            id: 2,
-            title: "Замена лампы",
-            date: "2025-04-28",
-            employee: "Петров",
-            status: "Завершено",
-            type: "Электрика",
-            description: "Лампочка в коридоре не горит.",
-            images: ["/photos/lamp1.jpg"]
-        }
-    ];
+    useEffect(() => {
+        API.get("/employee/requests/employee")
+            .then((res) => {
+                console.log("Ответ от сервера:", res.data);
+                setRequests(Array.isArray(res.data.data) ? res.data.data : []);
+            })
+            .catch((err) => {
+                console.error("Ошибка при загрузке запросов:", err);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
 
     const handleStatusChange = (e) => {
-        setSelectedRequest({ ...selectedRequest, status: e.target.value });
+        const newStatus = e.target.value;
+        if (selectedRequest) {
+            API.put(`/employee/requests/${selectedRequest.id}/status`, { status: newStatus })
+                .then(() => {
+                    setRequests(prev =>
+                        prev.map(req =>
+                            req.id === selectedRequest.id
+                                ? { ...req, status: newStatus }
+                                : req
+                        )
+                    );
+                    setSelectedRequest({ ...selectedRequest, status: newStatus });
+                })
+                .catch((err) => {
+                    console.error("Ошибка при обновлении статуса:", err);
+                });
+        }
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("ru-RU", {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+        });
     };
 
     const closeModal = () => setSelectedRequest(null);
 
     return (
         <div className="repair-container">
-            <h2>Все запросы</h2>
+            <h2>Мои заявки на ремонт</h2>
 
-            <div className="period-section">
-                <select
-                    className="period-select"
-                    value={period}
-                    onChange={(e) => setPeriod(e.target.value)}
-                >
-                    <option value="">Выбрать период</option>
-                    <option value="last3">Последние 3 месяца</option>
-                    <option value="last6">Последние 6 месяцев</option>
-                    <option value="last12">Последний год</option>
-                </select>
-            </div>
-
-            <table className="repair-table">
-                <thead>
-                <tr>
-                    <th>№</th>
-                    <th>Запрос</th>
-                    <th>Дата</th>
-                    <th>Сотрудник</th>
-                    <th>Статус</th>
-                </tr>
-                </thead>
-                <tbody>
-                {requests.map((req, index) => (
-                    <tr key={req.id} onClick={() => setSelectedRequest(req)} className="clickable-row">
-                        <td>{index + 1}</td>
-                        <td>{req.title}</td>
-                        <td>{req.date}</td>
-                        <td>{req.employee}</td>
-                        <td>{req.status}</td>
+            {loading ? (
+                <p>Загрузка...</p>
+            ) : (
+                <table className="repair-table">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Тип</th>
+                        <th>Описание</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {requests.map((req, index) => (
+                        <tr
+                            key={req.id}
+                            onClick={() => setSelectedRequest(req)}
+                            className="clickable-row"
+                        >
+                            <td>{index + 1}</td>
+                            <td>{req.type}</td>
+                            <td>{req.description || "Нет описания"}</td>
+                            <td>{formatDate(req.updated_at)}</td>
+                            <td>{req.status}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            )}
 
             {selectedRequest && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <h3>Детали запроса</h3>
                         <p><strong>Тип:</strong> {selectedRequest.type}</p>
-                        <p><strong>Описание:</strong> {selectedRequest.description}</p>
-                        <div className="modal-images">
-                            {selectedRequest.images.map((src, i) => (
-                                <img key={i} src={src} alt={`photo-${i}`} className="modal-img" />
-                            ))}
-                        </div>
+                        <p><strong>Статус:</strong> {selectedRequest.status}</p>
+                        <p><strong>Описание:</strong> {selectedRequest.description || "Нет описания"}</p>
+
+                        {selectedRequest.file && (
+                            <div className="modal-image">
+                                <p><strong>Фото:</strong></p>
+                                <img
+                                    src={`http://localhost:8000/storage/${selectedRequest.file}`}
+                                    alt="Приложение"
+                                    style={{
+                                        width: "300px",
+                                        height: "auto",
+                                        borderRadius: "8px",
+                                        marginTop: "10px",
+                                        boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
+                                    }}                                />
+                            </div>
+                        )}
+
                         <div className="modal-status">
                             <label>Изменить статус: </label>
                             <select value={selectedRequest.status} onChange={handleStatusChange}>
-                                <option value="Ожидает">Ожидает</option>
-                                <option value="В процессе">В процессе</option>
-                                <option value="Завершено">Завершено</option>
+                                <option value="На рассмотрении">На рассмотрении</option>
+                                <option value="Принято">Принято</option>
+                                <option value="Выполнено">Выполнено</option>
                             </select>
                         </div>
                         <button onClick={closeModal}>Закрыть</button>

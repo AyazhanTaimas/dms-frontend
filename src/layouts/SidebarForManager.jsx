@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "../styles/Layout2.css";
+import React from "react";
 
 const SidebarForManager = () => {
     return (
@@ -14,6 +15,10 @@ const SidebarForManager = () => {
                         <img src="/news.png" alt="Новости" className="nav-icon" />
                         Новости
                     </NavLink>
+                    <NavLink to="/personal-info" className={({ isActive }) => (isActive ? "active" : "")}>
+                        <img src="/personal-info.png" alt="Personal Info" className="nav-icon" />
+                        Личная информация
+                    </NavLink>
                     <NavLink to="/manager/users" className={({ isActive }) => (isActive ? "active" : "")}>
                         <img src="/users.png" alt="Пользователи" className="nav-icon" />
                         Пользователи
@@ -22,10 +27,10 @@ const SidebarForManager = () => {
                         <img src="/accommodation.png" alt="Заявки на проживание" className="nav-icon" />
                         Заявки на проживание
                     </NavLink>
-                    <NavLink to="/manager/room-change-requests" className={({ isActive }) => (isActive ? "active" : "")}>
+                    {/*<NavLink to="/manager/room-change-requests" className={({ isActive }) => (isActive ? "active" : "")}>
                         <img src="/accommodation.png" alt="Заявки на смену комнаты" className="nav-icon" />
                         Заявки на смену комнаты
-                    </NavLink>
+                    </NavLink>*/}
                 </nav>
             </aside>
             <main className="content"></main>

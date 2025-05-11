@@ -1,78 +1,88 @@
 import React, { useState } from "react";
 import "../../styles/student/FinancialCabinet.css";
 
-const pastPayments = [
-    { id: 1, paymentId: "123456", month: "Март", date: "25.03.2025", link: "#" },
-    { id: 2, paymentId: "789012", month: "Февраль", date: "25.02.2025", link: "#" },
-    { id: 3, paymentId: "345678", month: "Январь", date: "25.01.2025", link: "#" },
-];
-
-const upcomingPayments = [
-    { id: 1, month: "Апрель", dueDate: "10.04.2025", price: "20 000 ₸" },
-];
-
 const FinancialCabinet = () => {
-    const [period, setPeriod] = useState("");
+    const [testAmount, setTestAmount] = useState("");
+    const [paymentHistory, setPaymentHistory] = useState([]);
+    const [showHistory, setShowHistory] = useState(false);
+
+    const handleTestPayment = () => {
+        if (!testAmount) return;
+
+        const newPayment = {
+            date: new Date().toLocaleDateString("ru-RU"),
+            amount: `${testAmount} ₸`,
+            method: "Тестовая оплата",
+        };
+
+        setPaymentHistory((prev) => [...prev, newPayment]);
+        setTestAmount("");
+        setShowHistory(true);
+    };
 
     return (
         <div className="financial-container">
-            <h2 className="financial-title">Предыдущие оплаты</h2>
+            <div className="cards-row">
+                {/* Текущий баланс */}
+                <div className="card balance-card">
+                    <h3 className="text balance">Текущий баланс</h3>
+                    <p className="balance-amount">25 000 ₸</p>
+                </div>
 
-            {/* Выбор периода */}
-            <div className="period-section">
-                <select
-                    className="period-select"
-                    value={period}
-                    onChange={(e) => setPeriod(e.target.value)}
-                >
-                    <option value="">Выбрать период</option>
-                    <option value="last3">Последние 3 месяца</option>
-                    <option value="last6">Последние 6 месяцев</option>
-                    <option value="last12">Последний год</option>
-                </select>
+                {/* Оплата через Kaspi */}
+                <div className="card kaspi-card">
+                    <h3 className="text payment">Оплата через Kaspi</h3>
+                    <img
+                        src="/public/kaspiqr.JPG"
+                        alt="Kaspi QR"
+                        className="kaspi-image"
+                    />
+                    <p>Отсканируйте QR-код для оплаты</p>
+                </div>
+
+                {/* Тестовая оплата */}
+                <div className="card test-payment-card">
+                    <h3 className="text testing">Тестовая оплата</h3>
+                    <p className="warning-text">⚠️ Тестовый режим: реальные платежи не проводятся</p>
+                    <label htmlFor="testAmount">Сумма оплаты (₸):</label>
+                    <input
+                        id="testAmount"
+                        type="number"
+                        value={testAmount}
+                        onChange={(e) => setTestAmount(e.target.value)}
+                        className="test-amount-input"
+                        placeholder="Введите сумму"
+                    />
+                    <button className="pay-button" onClick={handleTestPayment}>
+                        Тестовая оплата
+                    </button>
+                </div>
             </div>
 
-            {/* Контейнер с оплатами */}
-            <div className="payments-container">
-                {/* Предыдущие оплаты */}
-                <div className="past-payments">
-                    <table className="payments-table">
+            {/* История тестовых платежей */}
+            {showHistory && (
+                <div className="history-container">
+                    <h3>История тестовых платежей</h3>
+                    <table className="history-table">
                         <thead>
                         <tr>
-                            <th>№</th>
-                            <th>ID оплаты</th>
-                            <th>Ссылка на чек</th>
-                            <th>Дата оплаты</th>
+                            <th>Дата</th>
+                            <th>Сумма</th>
+                            <th>Способ оплаты</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {pastPayments.map((payment, index) => (
-                            <tr key={payment.id}>
-                                <td>{index + 1}</td>
-                                <td>{payment.paymentId}</td>
-                                <td>
-                                    <a href={payment.link} className="payment-link">Оплата за {payment.month}</a>
-                                </td>
+                        {paymentHistory.map((payment, index) => (
+                            <tr key={index}>
                                 <td>{payment.date}</td>
+                                <td>{payment.amount}</td>
+                                <td>{payment.method}</td>
                             </tr>
                         ))}
                         </tbody>
                     </table>
                 </div>
-
-                {/* Предстоящие оплаты */}
-                <div className="upcoming-payments">
-                    <h3>Предстоящие оплаты</h3>
-                    {upcomingPayments.map((payment) => (
-                        <div key={payment.id} className="upcoming-payment">
-                            <p><strong>Оплата за:</strong> {payment.month}</p>
-                            <p><strong>Дата до:</strong> {payment.dueDate}</p>
-                            <p><strong>Цена:</strong> {payment.price}</p>
-                            <button className="pay-button">Оплатить</button>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            )}
         </div>
     );
 };
